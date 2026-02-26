@@ -10,4 +10,8 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['prefix' => "admin", "as" => "admin."], function() {
     include 'apis/auth.php';
+
+    Route::group(['middleware' => "auth:sanctum"],function() {
+        include 'apis/phone.php';
+    });
 });
