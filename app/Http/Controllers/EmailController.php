@@ -31,7 +31,7 @@ class EmailController extends Controller
 
         return ApiResponse::success(
             new EmailResource($email),
-            "Emails added successfully",
+            "Email added successfully",
             200
         );
     }
@@ -42,7 +42,7 @@ class EmailController extends Controller
 
         return ApiResponse::success(
             new EmailResource($email),
-            "Emails updated successfully",
+            "Email updated successfully",
             200
         );
     }
@@ -52,7 +52,7 @@ class EmailController extends Controller
 
         return ApiResponse::success(
             new EmailResource($email),
-            "Emails deleted successfully",
+            "Email deleted successfully",
             200
         );
     }

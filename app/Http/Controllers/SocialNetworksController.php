@@ -31,7 +31,7 @@ class SocialNetworksController extends Controller
 
         return ApiResponse::success(
             new SocialNetworkResource($socialNetworks),
-            "SocialNetworks added successfully",
+            "SocialNetwork added successfully",
             200
         );
     }
@@ -42,7 +42,7 @@ class SocialNetworksController extends Controller
 
         return ApiResponse::success(
             new SocialNetworkResource($socialNetwork),
-            "SocialNetworks updated successfully",
+            "SocialNetwork updated successfully",
             200
         );
     }
@@ -52,7 +52,7 @@ class SocialNetworksController extends Controller
 
         return ApiResponse::success(
             new SocialNetworkResource($socialNetwork),
-            "SocialNetworks deleted successfully",
+            "SocialNetwork deleted successfully",
             200
         );
     }
@@ -63,7 +63,7 @@ class SocialNetworksController extends Controller
 
         return ApiResponse::success(
             new SocialNetworkResource($socialNetwork),
-            "SocialNetworks fetched successfully",
+            "SocialNetwork fetched successfully",
             200
         );
     }

@@ -31,7 +31,7 @@ class MapController extends Controller
 
         return ApiResponse::success(
             new MaPResource($map),
-            "Maps added successfully",
+            "Map added successfully",
             200
         );
     }
@@ -42,7 +42,7 @@ class MapController extends Controller
 
         return ApiResponse::success(
             new MaPResource($map),
-            "Maps updated successfully",
+            "Map updated successfully",
             200
         );
     }
@@ -52,7 +52,7 @@ class MapController extends Controller
 
         return ApiResponse::success(
             new MaPResource($map),
-            "Maps deleted successfully",
+            "Map deleted successfully",
             200
         );
     }
