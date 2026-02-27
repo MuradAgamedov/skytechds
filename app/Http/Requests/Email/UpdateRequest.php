@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Phone;
+namespace App\Http\Requests\Email;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,9 +22,9 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone' => ['required'],
-            "status" => ['boolean', "nullable"],
-            "order" => ['integer']
+            "email" => ["required"],
+            "order" => ["integer"],
+            "status" => ["nullable", "boolean"]
         ];
     }
 }

@@ -8,10 +8,8 @@ use App\Http\Resources\PhoneResource;
 use App\Models\Phone;
 use App\Services\PhoneService;
 use App\Support\ApiResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use function PHPSTORM_META\type;
 
 class PhoneController extends Controller
 {
@@ -26,7 +24,7 @@ class PhoneController extends Controller
         $phones = $this->phone_service->getWidthPagination();
         return ApiResponse::success(
             PhoneResource::collection($phones),
-            "Phone fetched successfully",
+            "Phones fetched successfully",
             200
         );
     }
@@ -48,7 +46,7 @@ class PhoneController extends Controller
 
         return ApiResponse::success(
             new PhoneResource($phone),
-            "Phone addded successfully",
+            "Phone added successfully",
             200
         );
     }
