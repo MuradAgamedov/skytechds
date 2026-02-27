@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('social_networks', function (Blueprint $table) {
             $table->id();
-            $table->enum("platform", ["facebook", "twitter", "instagram", "twitter", "youtube", "tikTok", "pinterest", "reddit", "telegram", "whatsapp", "discord", "threads", "twitch", "wechat"]);
+            $table->enum("platform", ["facebook", "twitter", "instagram", "youtube", "tikTok", "pinterest", "reddit", "telegram", "whatsapp", "discord", "threads", "twitch", "wechat"]);
             $table->integer("order")->default(1);
             $table->boolean("status")->default(true);
             $table->string("url")->nullable();
