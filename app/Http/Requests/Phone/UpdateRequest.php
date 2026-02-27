@@ -22,7 +22,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone' => ['required'],
+            'phone' => ['required', "max:255"],
             "status" => ['boolean', "nullable"],
             "order" => ['integer']
         ];

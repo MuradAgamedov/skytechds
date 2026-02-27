@@ -14,5 +14,6 @@ Route::group(['prefix' => "admin", "as" => "admin."], function() {
     Route::group(['middleware' => "auth:sanctum"],function() {
         include 'apis/phone.php';
         include 'apis/email.php';
+        include 'apis/map.php';
     });
 });

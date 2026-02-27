@@ -22,7 +22,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "email" => ["required"],
+            "email" => ["required", "max:255"],
             "order" => ["integer"],
             "status" => ["nullable", "boolean"]
         ];

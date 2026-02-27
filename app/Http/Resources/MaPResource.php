@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EmailResource extends JsonResource
+class MaPResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,7 @@ class EmailResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "email" => $this->email,
-            "status" => $this->status
+            "map" => $this->map
         ];
     }
 }
