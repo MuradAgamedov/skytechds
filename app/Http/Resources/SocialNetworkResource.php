@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MaPResource extends JsonResource
+class SocialNetworkResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,8 @@ class MaPResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "map" => $this->map,
+            "platform" => $this->platform,
+            "url" => $this->url,
             "status" => $this->status
         ];
     }

@@ -15,5 +15,6 @@ Route::group(['prefix' => "admin", "as" => "admin."], function() {
         include 'apis/phone.php';
         include 'apis/email.php';
         include 'apis/map.php';
+        include 'apis/social_networks.php';
     });
 });
