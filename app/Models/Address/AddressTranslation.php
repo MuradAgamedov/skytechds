@@ -9,7 +9,7 @@ class AddressTranslation extends Model
 {
     protected $fillable = ["address", "language_id", 'address_id'];
 
-     public function translation() {
+    public function translation() {
         return $this->hasOne(Address::class);
     }
 }

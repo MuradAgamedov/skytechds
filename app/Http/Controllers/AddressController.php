@@ -18,7 +18,7 @@ class AddressController extends Controller
     }
 
     public function index():JsonResponse {
-        $addresses = $this->address_service->getWidthPagination();
+        $addresses = $this->address_service->getWidthPagination(['translations']);
         
         return ApiResponse::success(
             AddressResource::collection($addresses),

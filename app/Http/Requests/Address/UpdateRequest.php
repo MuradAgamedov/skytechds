@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
             "status" => ["nullable", "boolean"],
             "order" => ["integer", "nullable"],
             "translations" => ["required", "array"],
-            "translations.address" => ["required", "array"]
+            "translations.address" => ["required", "array"],
         ];
 
         foreach($languages as $language) {

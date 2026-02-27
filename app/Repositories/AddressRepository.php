@@ -57,11 +57,12 @@ class AddressRepository implements AddressRepositoryInterface{
         });
     }   
 
-    public function destroy(Address $email):Address {
-        $email->delete();
-        return $email;
+    public function destroy(Address $address):Address {
+        $address->load("translations");
+        $address->delete();
+        return $address;
     }
-    public function find(Address $email) {
-        return $email;
+    public function find(Address $address) {
+        return $address;
     }
 }
