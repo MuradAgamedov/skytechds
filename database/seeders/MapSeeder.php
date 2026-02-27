@@ -9,6 +9,7 @@ class MapSeeder extends Seeder
 {
     public function run(): void
     {
+        Map::truncate();
         Map::insert([
             ["map" => "https://maps.google.com/?q=Baku", "order" => 1, "status" => true],
             ["map" => "https://maps.google.com/?q=Ganja", "order" => 2, "status" => true],

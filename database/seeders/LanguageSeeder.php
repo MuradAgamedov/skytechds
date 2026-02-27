@@ -9,6 +9,7 @@ class LanguageSeeder extends Seeder
 {
     public function run(): void
     {
+        Language::truncate();
         Language::insert([
             [
                 "title" => "Azərbaycan",

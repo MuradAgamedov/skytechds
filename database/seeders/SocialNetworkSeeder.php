@@ -9,6 +9,8 @@ class SocialNetworkSeeder extends Seeder
 {
     public function run(): void
     {
+        SocialNetwork::truncate();
+
         $platforms = [
             "facebook",
             "twitter",

@@ -9,13 +9,14 @@ Route::get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => "admin", "as" => "admin."], function() {
-    include 'apis/auth.php';
+    include 'apis/contacts/auth.php';
 
     Route::group(['middleware' => "auth:sanctum"],function() {
-        include 'apis/phone.php';
-        include 'apis/email.php';
-        include 'apis/map.php';
-        include 'apis/social_networks.php';
-        include 'apis/language.php';
+        include 'apis/contacts/phone.php';
+        include 'apis/contacts/email.php';
+        include 'apis/contacts/map.php';
+        include 'apis/contacts/social_networks.php';
+        include 'apis/contacts/language.php';
+        include 'apis/contacts/address.php';
     });
 });

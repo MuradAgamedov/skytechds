@@ -9,6 +9,7 @@ class PhoneSeeder extends Seeder
 {
     public function run(): void
     {
+        Phone::truncate();
         Phone::insert([
             [
                 "phone" => "0501111111",

@@ -9,6 +9,7 @@ class EmailSeeder extends Seeder
 {
     public function run(): void
     {
+        Email::truncate();
         Email::insert([
             ["email" => "info@example.com", "order" => 1, "status" => true],
             ["email" => "support@example.com", "order" => 2, "status" => true],
