@@ -17,7 +17,7 @@ class PhoneResource extends JsonResource
         return [
             "id" => $this->id,
             "phone" => $this->phone,
-            "status" => $this->status
+            "status" => $this->status,
         ];
     }
 }

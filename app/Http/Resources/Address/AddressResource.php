@@ -19,7 +19,6 @@ class AddressResource extends JsonResource
             "id" => $this->id,
             "translations" => AddressTranslationResource::collection($this->translations),
             "status" => $this->status,
-            "order" => $this->order
         ];
     }
 }

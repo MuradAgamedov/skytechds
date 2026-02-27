@@ -20,7 +20,6 @@ class DictionaryResource extends JsonResource
             "keyword" => $this->keyword,
             "translations" => DictionaryTranslationResource::collection($this->translations),
             "status" => $this->status,
-            "order" => $this->order,
         ];
     }
 }
