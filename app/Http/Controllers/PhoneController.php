@@ -9,6 +9,9 @@ use App\Models\Phone;
 use App\Services\PhoneService;
 use App\Support\ApiResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+use function PHPSTORM_META\type;
 
 class PhoneController extends Controller
 {
@@ -20,7 +23,12 @@ class PhoneController extends Controller
      */
     public function index()
     {
-        //
+        $phones = $this->phone_service->getWidthPagination();
+        return ApiResponse::success(
+            PhoneResource::collection($phones),
+            "Phone fetched successfully",
+            200
+        );
     }
 
     /**
@@ -34,7 +42,7 @@ class PhoneController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateRequest $request)
+    public function store(CreateRequest $request):JsonResponse
     {
         $phone = $this->phone_service->store($request->validated());
 
@@ -48,9 +56,15 @@ class PhoneController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Phone $phone)
     {
-        //
+        $phone = $this->phone_service->find($phone);
+
+        return ApiResponse::success(
+            new PhoneResource($phone),
+            "Phone fetched successfully",
+            200
+        );
     }
 
     /**
@@ -64,7 +78,7 @@ class PhoneController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, Phone $phone)
+    public function update(UpdateRequest $request, Phone $phone):JsonResponse
     {
         $phone = $this->phone_service->update($phone, $request->validated());
 
@@ -78,8 +92,15 @@ class PhoneController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Phone $phone):JsonResponse
     {
-        //
+        $phone = $this->phone_service->destroy($phone);
+
+        
+        return ApiResponse::success(
+            new PhoneResource($phone),
+            "Phone deleted successfully",
+            200
+        );
     }
 }
