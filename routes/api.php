@@ -8,10 +8,10 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::group(['prefix' => "admin", "as" => "admin."], function() {
-    include 'apis/contacts/auth.php';
+Route::group(['prefix' => "admin", "as" => "admin."], function () {
+    include 'apis/auth/auth.php';
 
-    Route::group(['middleware' => "auth:sanctum"],function() {
+    Route::group(['middleware' => "auth:sanctum"], function () {
         include 'apis/contacts/phone.php';
         include 'apis/contacts/email.php';
         include 'apis/contacts/map.php';
@@ -19,5 +19,6 @@ Route::group(['prefix' => "admin", "as" => "admin."], function() {
         include 'apis/contacts/language.php';
         include 'apis/contacts/address.php';
         include 'apis/languageAndDictionary/dictionary.php';
+        include 'apis/blogs/blog_category.php';
     });
 });
