@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Models\Address\Address;
 use App\Models\Blog\Blog;
 use App\Models\BlogCategory\BlogCategory;
-use App\Models\Dictionary\Dictionary;
 use App\Models\Email;
 use App\Models\Phone;
 use App\Models\Language;
@@ -19,7 +18,6 @@ use App\Observers\BlogCategoryObserver;
 use App\Observers\BlogObserver;
 use App\Observers\SocialNetworkObserver;
 use App\Observers\MapObserver;
-use App\Observers\DictionaryObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
