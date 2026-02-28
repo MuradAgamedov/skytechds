@@ -20,5 +20,6 @@ Route::group(['prefix' => "admin", "as" => "admin."], function () {
         include 'apis/contacts/address.php';
         include 'apis/languageAndDictionary/dictionary.php';
         include 'apis/blogs/blog_category.php';
+        include 'apis/blogs/blog.php';
     });
 });

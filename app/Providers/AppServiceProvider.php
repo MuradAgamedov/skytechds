@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Address\Address;
+use App\Models\Blog\Blog;
 use App\Models\BlogCategory\BlogCategory;
 use App\Models\Dictionary\Dictionary;
 use App\Models\Email;
@@ -15,6 +16,7 @@ use App\Observers\PhoneObserver;
 use App\Observers\LanguageObserver;
 use App\Observers\AddressObserver;
 use App\Observers\BlogCategoryObserver;
+use App\Observers\BlogObserver;
 use App\Observers\SocialNetworkObserver;
 use App\Observers\MapObserver;
 use App\Observers\DictionaryObserver;
@@ -42,5 +44,6 @@ class AppServiceProvider extends ServiceProvider
         SocialNetwork::observe(SocialNetworkObserver::class);
         Map::observe(MapObserver::class);
         BlogCategory::observe(BlogCategoryObserver::class);
+        Blog::observe(BlogObserver::class);
     }
 }
