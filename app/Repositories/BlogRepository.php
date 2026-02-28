@@ -7,12 +7,13 @@ use App\Interfaces\Repositories\BlogRepositoryInterface;
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogTranslation;
 use App\Services\LanguageService;
+use App\Support\ImageService;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
 class BlogRepository implements BlogRepositoryInterface
 {
-    public function __construct(public Blog $model, public BlogTranslation $translationModel, public LanguageService $languageService) {}
+    public function __construct(public Blog $model, public BlogTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {}
     public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
     {
         return $this->model::with($with)->paginate($limit);
@@ -22,6 +23,7 @@ class BlogRepository implements BlogRepositoryInterface
         return DB::transaction(function () use ($data) {
             $blogTranslationData = $data["translations"];
             unset($data["translations"]);
+            $data["card_image"] = $this->image_service->upload($data, "card_image", "blogs");
             $blog = $this->model->create($data);
 
             foreach ($this->languageService->getWidthPagination() as $language) {
@@ -43,6 +45,7 @@ class BlogRepository implements BlogRepositoryInterface
         return DB::transaction(function () use ($blog, $data) {
             $blogTranslationData = $data["translations"];
             unset($data["translations"]);
+            $data["card_image"] = $this->image_service->update($blog, $data, "card_image", "blogs");
             $blog->update($data);
             $existingTranslations = $blog->translations()->get()->keyBy("language_id");
 
@@ -56,6 +59,7 @@ class BlogRepository implements BlogRepositoryInterface
                     }
                 }
             }
+
             $blog->refresh();
 
             return $blog->load("translations");

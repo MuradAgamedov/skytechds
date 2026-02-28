@@ -27,6 +27,7 @@ class CreateRequest extends FormRequest
             "status" => ["nullable", "boolean"],
             "order" => ["integer", "nullable"],
             "slug" => ["string", "required", "unique:blogs,slug"],
+            "card_image" => ["image", "required", "mimes:jpg,jpeg,png,webp", "max:2048"],
             "translations" => ["required", "array"],
             "translations.title" => ["required", "array"],
             "translations.seo_title" => ["required", "array"],
@@ -43,6 +44,7 @@ class CreateRequest extends FormRequest
             $rules["translations.seo_description." . $language->id] = ["required"];
             $rules["translations.seo_keywords." . $language->id] = ["required"];
             $rules["translations.description." . $language->id] = ["required"];
+            $rules["translations.card_image_alt_text." . $language->id] = ["required"];
         }
 
         return $rules;

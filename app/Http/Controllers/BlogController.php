@@ -40,7 +40,6 @@ class BlogController extends Controller
     public function update(UpdateRequest $request, Blog $blog): JsonResponse
     {
         $blog = $this->blogCategory_service->update($blog, $request->validated());
-
         return ApiResponse::success(
             new BlogResource($blog),
             "Blog updated successfully",
