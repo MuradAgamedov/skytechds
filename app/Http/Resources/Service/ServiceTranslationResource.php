@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Blog;
+namespace App\Http\Resources\Service;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BlogResourceTranslation extends JsonResource
+class ServiceTranslationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,11 +14,13 @@ class BlogResourceTranslation extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+            return [
             "id" => $this->id,
             "title" => $this->title,
+            "card_title" => $this->card_title,
             "description" => $this->description,
-            "card_image_alt_text" => $this->card_image_alt_text,
+            "icon_alt_text" => $this->icon_alt_text,
+            "inner_image_alt_text" => $this->inner_image_alt_text,
             "seo_title" => $this->seo_title,
             "seo_description" => $this->seo_description,
             "seo_keywords" => $this->seo_keywords,

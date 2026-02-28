@@ -17,6 +17,8 @@ class BlogResource extends JsonResource
         return [
             "id" => $this->id,
             "translations" => BlogResourceTranslation::collection($this->translations),
+            "slug" => $this->slug,
+            "card_image" => $this->card_image ? asset("storage/" . $this->card_image) : null,
             "status" => $this->status,
         ];
     }
