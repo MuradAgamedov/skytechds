@@ -19,15 +19,15 @@ class AddressService implements AddressServiceInterface {
         return $this->repository->store($data);
     }
 
-    public function update(Address $phone, array $data): Address {
-        return $this->repository->update($phone, $data);
+    public function update(Address $address, array $data): Address {
+        return $this->repository->update($address, $data);
     }
 
-    public function destroy(Address $phone) : Address {
-        return $this->repository->destroy($phone);
+    public function destroy(Address $address) : Address {
+        return $this->repository->destroy($address);
     }
 
-    public function find(Address $email) : Address {
-        return $this->repository->find($email);
+    public function find(Address $address) : Address {
+        return $this->repository->find($address);
     }
 }

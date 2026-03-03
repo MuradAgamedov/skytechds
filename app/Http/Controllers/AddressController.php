@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Address\CreateRequest;
 use App\Http\Requests\Address\UpdateRequest;
 use App\Http\Resources\Address\AddressResource;
-use App\Http\Resources\EmailResource;
 use App\Models\Address\Address;
 use App\Services\AddressService;
 use App\Support\ApiResponse;
@@ -59,11 +58,11 @@ class AddressController extends Controller
     }
     
 
-    public function show(Address $email) {
-         $email = $this->address_service->find($email);
+    public function show(Address $address) {
+         $address = $this->address_service->find($address);
 
         return ApiResponse::success(
-            new AddressResource($email),
+            new AddressResource($address),
             "Address fetched successfully",
             200
         );

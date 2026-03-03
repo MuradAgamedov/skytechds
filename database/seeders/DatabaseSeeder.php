@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             MapSeeder::class,
             PhoneSeeder::class,
             SocialNetworkSeeder::class,
-            AddressSeeder::class
+            AddressSeeder::class,
+            SiteInfoSeeder::class
         ]);
     }
 }

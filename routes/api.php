@@ -11,16 +11,20 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix' => "admin", "as" => "admin."], function () {
     include 'apis/auth/auth.php';
 
-    Route::group(['middleware' => "auth:sanctum"], function () {
-        include 'apis/contacts/phone.php';
-        include 'apis/contacts/email.php';
-        include 'apis/contacts/map.php';
-        include 'apis/contacts/social_networks.php';
-        include 'apis/contacts/language.php';
-        include 'apis/contacts/address.php';
-        include 'apis/languageAndDictionary/dictionary.php';
-        include 'apis/blogs/blog_category.php';
-        include 'apis/blogs/blog.php';
-        include 'apis/content/service.php';
-        include 'apis/content/portfolio.php';});
+        Route::group(['middleware' => "auth:sanctum"], function () {
+                include 'apis/contacts/phone.php';
+                include 'apis/contacts/email.php';
+                include 'apis/contacts/map.php';
+                include 'apis/contacts/social_networks.php';
+                include 'apis/contacts/language.php';
+                include 'apis/contacts/address.php';
+                include 'apis/languageAndDictionary/dictionary.php';
+                include 'apis/blogs/blog_category.php';
+                include 'apis/blogs/blog.php';
+                include 'apis/content/service.php';
+                include 'apis/content/portfolio.php';
+                include 'apis/content/site_info.php';
+        });
+        
+        
 });
