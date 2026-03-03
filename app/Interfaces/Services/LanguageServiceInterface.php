@@ -13,5 +13,4 @@ interface LanguageServiceInterface
     public function update(Language $language, array $data): Language;
     public function destroy(Language $language): Language;
     public function find(Language $language);
-    public function findById(int $id): Language;
 }
