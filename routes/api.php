@@ -28,6 +28,7 @@ Route::group(['prefix' => "admin", "as" => "admin."], function () {
                 include 'apis/content/statistic.php';
                 include 'apis/content/about.php';
                 include 'apis/contact-message.php';
+                include 'apis/content/testimonial.php';
         });
         
         
