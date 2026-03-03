@@ -2,13 +2,12 @@
 
 namespace App\Interfaces\Repositories;
 
-use App\Models\Email;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface EmailRepositoryInterface {
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator;
     public function store(array $data);
-    public function update(Email $email, array $data):Email;
-    public function destroy(Email $email):Email;
-    public function find(Email $email);
+    public function update($email, array $data);
+    public function destroy($email);
+    public function find($email);
 }

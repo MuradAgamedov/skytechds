@@ -7,8 +7,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ContactMessageRepositoryInterface {
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator;
-    public function store(array $data):ContactMessage;
-    public function destroy(ContactMessage $message):ContactMessage;
-    public function find(ContactMessage $message):ContactMessage;
-    public function toggleRead(ContactMessage $id):ContactMessage;
+    public function store(array $data);
+    public function destroy($message);
+    public function find($message);
+    public function toggleRead(ContactMessage $model) : ContactMessage;
 }

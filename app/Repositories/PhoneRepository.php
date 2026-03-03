@@ -2,31 +2,11 @@
 namespace App\Repositories;
 use App\Interfaces\Repositories\PhoneRepositoryInterface;
 use App\Models\Phone;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Repositories\Base\BaseCrudRepository;
 
-class PhoneRepository implements PhoneRepositoryInterface{
-    public function __construct(public Phone $model)
+class PhoneRepository extends BaseCrudRepository implements PhoneRepositoryInterface{
+    public function __construct(Phone $model)
     {
-    }
-    public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator {
-        return $this->model::with($with)->paginate($limit);
-    }
-    public function store(array $data):Phone {
-        return $this->model::create($data);
-    }
-
-    public function update(Phone $phone, array $data):Phone {
-        $phone->update($data);
-        $phone->refresh();
-        return $phone;
-    }
-
-    public function destroy(Phone $phone): Phone
-    {
-        $phone->delete();
-        return $phone;
-    }
-    public function find(Phone $phone):Phone {
-        return $phone;
+        $this->model = $model;
     }
 }
