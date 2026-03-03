@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Interfaces\Repositories\AboutRepositoryInterface;
 use App\Models\About\About;
 use App\Models\About\AboutTranslation;
-use App\Models\SiteInfo\SiteInfo;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
