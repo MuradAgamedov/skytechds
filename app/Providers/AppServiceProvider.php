@@ -11,6 +11,7 @@ use App\Models\Phone;
 use App\Models\Language;
 use App\Models\SocialNetwork;
 use App\Models\Map;
+use App\Models\Statistics\Statistic;
 use App\Observers\EmailObserver;
 use App\Observers\PhoneObserver;
 use App\Observers\LanguageObserver;
@@ -20,6 +21,7 @@ use App\Observers\BlogObserver;
 use App\Observers\FaqObserve;
 use App\Observers\SocialNetworkObserver;
 use App\Observers\MapObserver;
+use App\Observers\StatisticObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -46,5 +48,6 @@ class AppServiceProvider extends ServiceProvider
         BlogCategory::observe(BlogCategoryObserver::class);
         Blog::observe(BlogObserver::class);
         Faq::observe(FaqObserve::class);
+        Statistic::observe(StatisticObserver::class);
     }
 }

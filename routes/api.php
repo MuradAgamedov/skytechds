@@ -25,6 +25,7 @@ Route::group(['prefix' => "admin", "as" => "admin."], function () {
                 include 'apis/content/portfolio.php';
                 include 'apis/content/site_info.php';
                 include 'apis/content/faq.php';
+                include 'apis/content/statistic.php';
         });
         
         

@@ -61,10 +61,10 @@ class BlogController extends Controller
 
     public function show(Blog $blog): JsonResponse
     {
-        $email = $this->blogCategory_service->find($blog);
+        $blog = $this->blogCategory_service->find($blog);
 
         return ApiResponse::success(
-            new BlogResource($email),
+            new BlogResource($blog),
             "Blog fetched successfully",
             200
         );
