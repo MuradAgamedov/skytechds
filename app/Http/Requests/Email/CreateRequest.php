@@ -24,7 +24,7 @@ class CreateRequest extends FormRequest
         return [
             "email" => ["required", "max:255"],
             "order" => ["integer"],
-            "status" => ["nullable", "boolean", "unique"]
+            "status" => ["nullable", "boolean"]
         ];
     }
 }
