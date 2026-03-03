@@ -21,35 +21,35 @@ class BlogRepository implements BlogRepositoryInterface
     public function store(array $data): Blog
     {
         return DB::transaction(function () use ($data) {
-            $blogTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
             $data["card_image"] = $this->image_service->upload($data, "card_image", "blogs");
-            $blog = $this->model->create($data);
+            $model = $this->model->create($data);
 
             foreach ($this->languageService->getWidthPagination() as $language) {
                 $this->translationModel::create([
-                    "title" => $blogTranslationData["title"][$language->id] ?? null,
-                    "seo_title" => $blogTranslationData["seo_title"][$language->id] ?? null,
-                    "seo_description" => $blogTranslationData["seo_description"][$language->id] ?? null,
-                    "seo_keywords" => $blogTranslationData["seo_keywords"][$language->id] ?? null,
-                    "description" => $blogTranslationData["description"][$language->id] ?? null,
+                    "title" => $translationData["title"][$language->id] ?? null,
+                    "seo_title" => $translationData["seo_title"][$language->id] ?? null,
+                    "seo_description" => $translationData["seo_description"][$language->id] ?? null,
+                    "seo_keywords" => $translationData["seo_keywords"][$language->id] ?? null,
+                    "description" => $translationData["description"][$language->id] ?? null,
                     "language_id" => $language->id,
-                    "blog_id" => $blog->id
+                    "blog_id" => $model->id
                 ]);
             }
-            return $blog->load("translations");
+            return $model->load("translations");
         });
     }
-    public function update(Blog $blog, array $data): Blog
+    public function update(Blog $model, array $data): Blog
     {
-        return DB::transaction(function () use ($blog, $data) {
-            $blogTranslationData = $data["translations"];
+        return DB::transaction(function () use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $data["card_image"] = $this->image_service->update($blog, $data, "card_image", "blogs");
-            $blog->update($data);
-            $existingTranslations = $blog->translations()->get()->keyBy("language_id");
+            $data["card_image"] = $this->image_service->update($model, $data, "card_image", "blogs");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach ($blogTranslationData as $field  => $values) {
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
 
                     if (isset($existingTranslations[$languageId])) {
@@ -60,21 +60,21 @@ class BlogRepository implements BlogRepositoryInterface
                 }
             }
 
-            $blog->refresh();
+            $model->refresh();
 
-            return $blog->load("translations");
+            return $model->load("translations");
         });
     }
 
-    public function destroy(Blog $blog): Blog
+    public function destroy(Blog $model): Blog
     {
-        $blog->load("translations");
-        $blog->delete();
-        return $blog;
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(Blog $blog)
+    public function find(Blog $model)
     {
-        $blog->load("translations");
-        return $blog;
+        $model->load("translations");
+        return $model;
     }
 }

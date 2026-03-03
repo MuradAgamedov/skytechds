@@ -19,30 +19,30 @@ class FaqRepository implements FaqRepositoryInterface
     public function store(array $data): Faq
     {
         return DB::transaction(function () use ($data) {
-            $faqTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $faq = $this->model->create($data);
+            $model = $this->model->create($data);
             foreach ($this->languageService->getWidthPagination() as $language) {
 
                 $this->translationModel::create([
-                    "question" => $faqTranslationData["question"][$language->id] ?? null,
-                    "answer" => $faqTranslationData["answer"][$language->id] ?? null,
+                    "question" => $translationData["question"][$language->id] ?? null,
+                    "answer" => $translationData["answer"][$language->id] ?? null,
                     "language_id" => $language->id,
-                    "faq_id" => $faq->id
+                    "faq_id" => $model->id
                 ]);
             }
-            return $faq->load("translations");
+            return $model->load("translations");
         });
     }
-    public function update(Faq $faq, array $data): Faq
+    public function update(Faq $model, array $data): Faq
     {
-        return DB::transaction(function () use ($faq, $data) {
-            $faqTranslationData = $data["translations"];
+        return DB::transaction(function () use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $faq->update($data);
-            $existingTranslations = $faq->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach ($faqTranslationData as $field  => $values) {
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
 
                     if (isset($existingTranslations[$languageId])) {
@@ -52,21 +52,21 @@ class FaqRepository implements FaqRepositoryInterface
                     }
                 }
             }
-            $faq->refresh();
+            $model->refresh();
 
-            return $faq->load("translations");
+            return $model->load("translations");
         });
     }
 
-    public function destroy(Faq $faq): Faq
+    public function destroy(Faq $model): Faq
     {
-        $faq->load("translations");
-        $faq->delete();
-        return $faq;
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(Faq $faq)
+    public function find(Faq $model)
     {
-        $faq->load("translations");
-        return $faq;
+        $model->load("translations");
+        return $model;
     }
 }

@@ -19,10 +19,10 @@ class DictionaryRepository implements DictionaryRepositoryInterface{
     }
     public function store(array $data):Dictionary {
         return DB::transaction(function() use ($data) {
-            $dictionaryTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
             $dictionary = $this->model->create($data);
-            foreach($dictionaryTranslationData as $field  => $values){
+            foreach($translationData as $field  => $values){
                 foreach($values as $languageId  => $value) {
 
                     $this->translationModel::create([
@@ -36,14 +36,14 @@ class DictionaryRepository implements DictionaryRepositoryInterface{
             return $dictionary->load("translations");
         });
     }
-    public function update(Dictionary $dictionary, array $data):Dictionary {
-        return DB::transaction(function() use ($dictionary, $data) {
-            $dictionaryTranslationData = $data["translations"];
+    public function update(Dictionary $model, array $data):Dictionary {
+        return DB::transaction(function() use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $dictionary->update($data);
-            $existingTranslations = $dictionary->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach($dictionaryTranslationData as $field  => $values){
+            foreach($translationData as $field  => $values){
                     foreach($values as $languageId => $value) {
              
                         if(isset($existingTranslations[$languageId])) {
@@ -54,19 +54,19 @@ class DictionaryRepository implements DictionaryRepositoryInterface{
                       
                     }
                 }
-                $dictionary->refresh();
+                $model->refresh();
 
-                return $dictionary->load("translations");
+                return $model->load("translations");
         });
     }   
 
-    public function destroy(Dictionary $dictionary):Dictionary {
-        $dictionary->load("translations");
-        $dictionary->delete();
-        return $dictionary;
+    public function destroy(Dictionary $model):Dictionary {
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(Dictionary $dictionary) {
-        $dictionary->load("translations");
-        return $dictionary;
+    public function find(Dictionary $model) {
+        $model->load("translations");
+        return $model;
     }
 }

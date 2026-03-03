@@ -19,21 +19,19 @@ class ContactMessageRepository implements ContactMessageRepositoryInterface{
         return $this->model::create($data);
     }
   
-    public function destroy(ContactMessage $message):ContactMessage {
-        $message->delete();
-        return $message;
+    public function destroy(ContactMessage $model):ContactMessage {
+        $model->delete();
+        return $model;
     }
-    public function find(ContactMessage $message):ContactMessage {
-        return $message;
+    public function find(ContactMessage $model):ContactMessage {
+        return $model;
     }
 
-   
-
-    public function toggleRead(ContactMessage $contactMessage): ContactMessage {
-        $contactMessage->read = !$contactMessage->read;
-        $contactMessage->save();
-        $contactMessage->refresh();
-        return $contactMessage;
+    public function toggleRead(ContactMessage $model): ContactMessage {
+        $model->read = !$model->read;
+        $model->save();
+        $model->refresh();
+        return $model;
     }
 
 }

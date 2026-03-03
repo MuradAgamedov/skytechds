@@ -19,31 +19,31 @@ class BlogCategoryRepository implements BlogCategoryRepositoryInterface
     public function store(array $data): BlogCategory
     {
         return DB::transaction(function () use ($data) {
-            $blogCategoryTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $blogCategory = $this->model->create($data);
+            $model = $this->model->create($data);
             foreach ($this->languageService->getWidthPagination() as $language) {
                 $this->translationModel::create([
-                    "title" => $blogCategoryTranslationData["title"][$language->id] ?? null,
-                    "seo_title" => $blogCategoryTranslationData["seo_title"][$language->id] ?? null,
-                    "seo_description" => $blogCategoryTranslationData["seo_description"][$language->id] ?? null,
-                    "seo_keywords" => $blogCategoryTranslationData["seo_keywords"][$language->id] ?? null,
+                    "title" => $translationData["title"][$language->id] ?? null,
+                    "seo_title" => $translationData["seo_title"][$language->id] ?? null,
+                    "seo_description" => $translationData["seo_description"][$language->id] ?? null,
+                    "seo_keywords" => $translationData["seo_keywords"][$language->id] ?? null,
                     "language_id" => $language->id,
-                    "blog_category_id" => $blogCategory->id
+                    "blog_category_id" => $model->id
                 ]);
             }
-            return $blogCategory->load("translations");
+            return $model->load("translations");
         });
     }
-    public function update(BlogCategory $blogCategory, array $data): BlogCategory
+    public function update(BlogCategory $model, array $data): BlogCategory
     {
-        return DB::transaction(function () use ($blogCategory, $data) {
-            $blogCategoryTranslationData = $data["translations"];
+        return DB::transaction(function () use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $blogCategory->update($data);
-            $existingTranslations = $blogCategory->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach ($blogCategoryTranslationData as $field  => $values) {
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
 
                     if (isset($existingTranslations[$languageId])) {
@@ -53,21 +53,21 @@ class BlogCategoryRepository implements BlogCategoryRepositoryInterface
                     }
                 }
             }
-            $blogCategory->refresh();
+            $model->refresh();
 
-            return $blogCategory->load("translations");
+            return $model->load("translations");
         });
     }
 
-    public function destroy(BlogCategory $blogCategory): BlogCategory
+    public function destroy(BlogCategory $model): BlogCategory
     {
-        $blogCategory->load("translations");
-        $blogCategory->delete();
-        return $blogCategory;
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(BlogCategory $blogCategory)
+    public function find(BlogCategory $model)
     {
-        $blogCategory->load("translations");
-        return $blogCategory;
+        $model->load("translations");
+        return $model;
     }
 }

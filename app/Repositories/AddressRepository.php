@@ -18,31 +18,31 @@ class AddressRepository implements AddressRepositoryInterface
     public function store(array $data): Address
     {
         return DB::transaction(function () use ($data) {
-            $addressTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $address = $this->model->create($data);
-            foreach ($addressTranslationData as $field  => $values) {
+            $model = $this->model->create($data);
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId  => $value) {
                     $this->translationModel::create([
                         $field => $value,
                         "language_id" => $languageId,
-                        "address_id" => $address->id
+                        "address_id" => $model->id
                     ]);
                 }
             }
 
-            return $address->load("translations");
+            return $model->load("translations");
         });
     }
-    public function update(Address $address, array $data): Address
+    public function update(Address $model, array $data): Address
     {
-        return DB::transaction(function () use ($address, $data) {
-            $addressTranslationData = $data["translations"];
+        return DB::transaction(function () use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $address->update($data);
-            $existingTranslations = $address->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach ($addressTranslationData as $field  => $values) {
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
 
                     if (isset($existingTranslations[$languageId])) {
@@ -52,21 +52,21 @@ class AddressRepository implements AddressRepositoryInterface
                     }
                 }
             }
-            $address->refresh();
+            $model->refresh();
 
-            return $address->load("translations");
+            return $model->load("translations");
         });
     }
 
-    public function destroy(Address $address): Address
+    public function destroy(Address $model): Address
     {
-        $address->load("translations");
-        $address->delete();
-        return $address;
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(Address $address)
+    public function find(Address $model)
     {
-        $address->load("translations");
-        return $address;
+        $model->load("translations");
+        return $model;
     }
 }

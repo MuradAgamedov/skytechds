@@ -21,28 +21,28 @@ class PortfolioRepository implements PortfolioRepositoryInterface
     public function store(array $data): Portfolio
     {
         return DB::transaction(function () use ($data) {
-            $portfolioTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $portfolio = $this->model->create($data);
+            $model = $this->model->create($data);
             foreach ($this->languageService->getWidthPagination() as $language) {
                 $this->translationModel::create([
-                    "title" => $portfolioTranslationData["title"][$language->id] ?? null,
+                    "title" => $translationData["title"][$language->id] ?? null,
                     "language_id" => $language->id,
-                    "portfolio_id" => $portfolio->id
+                    "portfolio_id" => $model->id
                 ]);
             }
-            return $portfolio->load("translations");
+            return $model->load("translations");
         });
     }
-    public function update(Portfolio $portfolio, array $data): Portfolio
+    public function update(Portfolio $model, array $data): Portfolio
     {
-        return DB::transaction(function () use ($portfolio, $data) {
-            $portfolioTranslationData = $data["translations"];
+        return DB::transaction(function () use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $portfolio->update($data);
-            $existingTranslations = $portfolio->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach ($portfolioTranslationData as $field  => $values) {
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
 
                     if (isset($existingTranslations[$languageId])) {
@@ -52,22 +52,22 @@ class PortfolioRepository implements PortfolioRepositoryInterface
                     }
                 }
             }
-            $portfolio->refresh();
+            $model->refresh();
 
-            return $portfolio   ->load("translations");
+            return $model->load("translations");
         });
     }
 
-    public function destroy(Portfolio $portfolio): Portfolio
+    public function destroy(Portfolio $model): Portfolio
     {
-        $portfolio->load("translations");
-        $portfolio->delete();
-        return $portfolio;
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(Portfolio $portfolio)
+    public function find(Portfolio $model)
     {
-        $portfolio->load("translations");
-        return $portfolio;
+        $model->load("translations");
+        return $model;
     }
 
 }

@@ -20,30 +20,30 @@ class StatisticRepository implements StatisticRepositoryInterface
     public function store(array $data): Statistic
     {
         return DB::transaction(function () use ($data) {
-            $statisticTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $statistic = $this->model->create($data);
+            $model = $this->model->create($data);
             foreach ($this->languageService->getWidthPagination() as $language) {
                 $this->translationModel::create([
-                    "title" => $statisticTranslationData["title"][$language->id] ?? null,
-                    "subtitle" => $statisticTranslationData["subtitle"][$language->id] ?? null,
-                    "icon_alt_text" => $statisticTranslationData["icon_alt_text"][$language->id] ?? null,
+                    "title" => $translationData["title"][$language->id] ?? null,
+                    "subtitle" => $translationData["subtitle"][$language->id] ?? null,
+                    "icon_alt_text" => $translationData["icon_alt_text"][$language->id] ?? null,
                     "language_id" => $language->id,
-                    "statistic_id" => $statistic->id
+                    "statistic_id" => $model->id
                 ]);
             }
-            return $statistic->load("translations");
+            return $model->load("translations");
         });
     }
-    public function update(Statistic $statistic, array $data): Statistic
+    public function update(Statistic $model, array $data): Statistic
     {
-        return DB::transaction(function () use ($statistic, $data) {
-            $statisticTranslationData = $data["translations"];
+        return DB::transaction(function () use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $statistic->update($data);
-            $existingTranslations = $statistic->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach ($statisticTranslationData as $field  => $values) {
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
 
                     if (isset($existingTranslations[$languageId])) {
@@ -53,21 +53,21 @@ class StatisticRepository implements StatisticRepositoryInterface
                     }
                 }
             }
-            $statistic->refresh();
+            $model->refresh();
 
-            return $statistic->load("translations");
+            return $model->load("translations");
         });
     }
 
-    public function destroy(Statistic $statistic): Statistic
+    public function destroy(Statistic $model): Statistic
     {
-        $statistic->load("translations");
-        $statistic->delete();
-        return $statistic;
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(Statistic $statistic)
+    public function find(Statistic $model)
     {
-        $statistic->load("translations");
-        return $statistic;
+        $model->load("translations");
+        return $model;
     }
 }

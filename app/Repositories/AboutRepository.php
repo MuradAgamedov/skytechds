@@ -17,15 +17,15 @@ class AboutRepository implements AboutRepositoryInterface
         return $this->model::with($with)->paginate($limit);
     }
    
-    public function update(About $about, array $data): About
+    public function update(About $model, array $data): About
     {
-        return DB::transaction(function () use ($about, $data) {
-            $aboutTranslationData = $data["translations"];
+        return DB::transaction(function () use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $about->update($data);
-            $existingTranslations = $about->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach ($aboutTranslationData as $field  => $values) {
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
 
                     if (isset($existingTranslations[$languageId])) {
@@ -35,9 +35,9 @@ class AboutRepository implements AboutRepositoryInterface
                     }
                 }
             }
-            $about->refresh();
+            $model->refresh();
 
-            return $about->load("translations");
+            return $model->load("translations");
         });
     }
 

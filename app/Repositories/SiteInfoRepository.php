@@ -16,15 +16,15 @@ class SiteInfoRepository implements SiteInfoRepositoryInterface
         return $this->model::with($with)->paginate($limit);
     }
    
-    public function update(SiteInfo $siteInfo, array $data): SiteInfo
+    public function update(SiteInfo $model, array $data): SiteInfo
     {
-        return DB::transaction(function () use ($siteInfo, $data) {
-            $siteInfoTranslationData = $data["translations"];
+        return DB::transaction(function () use ($model, $data) {
+            $translationData = $data["translations"];
             unset($data["translations"]);
-            $siteInfo->update($data);
-            $existingTranslations = $siteInfo->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
-            foreach ($siteInfoTranslationData as $field  => $values) {
+            foreach ($translationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
 
                     if (isset($existingTranslations[$languageId])) {
@@ -34,9 +34,9 @@ class SiteInfoRepository implements SiteInfoRepositoryInterface
                     }
                 }
             }
-            $siteInfo->refresh();
+            $model->refresh();
 
-            return $siteInfo->load("translations");
+            return $model->load("translations");
         });
     }
 

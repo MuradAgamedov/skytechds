@@ -20,32 +20,32 @@ class TestimonialRepository implements TestimonialRepositoryInterface
     public function store(array $data): Testimonial
     {
         return DB::transaction(function () use ($data) {
-            $testimonialTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
             $data["photo"] = $this->image_service->upload($data, "photo", "testimonials");
-            $testimonial = $this->model->create($data);
+            $model = $this->model->create($data);
             foreach ($this->languageService->getWidthPagination() as $language) {
                 $this->translationModel::create([
-                    "full_name" => $testimonialTranslationData["full_name"][$language->id] ?? null,
-                    "company" => $testimonialTranslationData["company"][$language->id] ?? null,
-                    "position" => $testimonialTranslationData["position"][$language->id] ?? null,
+                    "full_name" => $translationData["full_name"][$language->id] ?? null,
+                    "company" => $translationData["company"][$language->id] ?? null,
+                    "position" => $translationData["position"][$language->id] ?? null,
                     "language_id" => $language->id,
-                    "testimonial_id" => $testimonial->id
+                    "testimonial_id" => $model->id
                 ]);
             }
-            return $testimonial->load("translations");
+            return $model->load("translations");
         });
     }
 
 
-    public function update(Testimonial $testimonial, array $data): Testimonial
+    public function update(Testimonial $model, array $data): Testimonial
     {
-        return DB::transaction(function () use ($testimonial, $data) {
+        return DB::transaction(function () use ($model, $data) {
             $testimonialTranslationData = $data["translations"];
             unset($data["translations"]);
-            $data["photo"] = $this->image_service->update($testimonial, $data, "photo", "testimonials");
-            $testimonial->update($data);
-            $existingTranslations = $testimonial->translations()->get()->keyBy("language_id");
+            $data["photo"] = $this->image_service->update($model, $data, "photo", "testimonials");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
             foreach ($testimonialTranslationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
@@ -58,21 +58,21 @@ class TestimonialRepository implements TestimonialRepositoryInterface
                 }
             }
 
-            $testimonial->refresh();
+            $model->refresh();
 
-            return $testimonial->load("translations");
+            return $model->load("translations");
         });
     }
 
-    public function destroy(Testimonial $testimonial): Testimonial
+    public function destroy(Testimonial $model): Testimonial
     {
-        $testimonial->load("translations");
-        $testimonial->delete();
-        return $testimonial;
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(Testimonial $testimonial)
+    public function find(Testimonial $model)
     {
-        $testimonial->load("translations");
-        return $testimonial;
+        $model->load("translations");
+        return $model;
     }
 }

@@ -21,39 +21,39 @@ class ServiceRepository implements ServicesRepositoryInterface
     public function store(array $data): Service
     {
         return DB::transaction(function () use ($data) {
-            $serviceTranslationData = $data["translations"];
+            $translationData = $data["translations"];
             unset($data["translations"]);
             $data["icon"] = $this->image_service->upload($data, "icon", "services");
             $data["inner_image"] = $this->image_service->upload($data, "inner_image", "blogs");
 
-            $service = $this->model->create($data);
+            $model = $this->model->create($data);
             foreach ($this->languageService->getWidthPagination() as $language) {
                 $this->translationModel::create([
-                    "title" => $serviceTranslationData["title"][$language->id] ?? null,
-                    "card_title" => $serviceTranslationData["card_title"][$language->id] ?? null,
-                    "icon_alt_text" => $serviceTranslationData["icon_alt_text"][$language->id] ?? null,
-                    "inner_image_alt_text" => $serviceTranslationData["inner_image_alt_text"][$language->id] ?? null,
-                    "description" => $serviceTranslationData["description"][$language->id] ?? null,
-                    "seo_title" => $serviceTranslationData["seo_title"][$language->id] ?? null,
-                    "seo_description" => $serviceTranslationData["seo_description"][$language->id] ?? null,
-                    "seo_keywords" => $serviceTranslationData["seo_keywords"][$language->id] ?? null,
+                    "title" => $translationData["title"][$language->id] ?? null,
+                    "card_title" => $translationData["card_title"][$language->id] ?? null,
+                    "icon_alt_text" => $translationData["icon_alt_text"][$language->id] ?? null,
+                    "inner_image_alt_text" => $translationData["inner_image_alt_text"][$language->id] ?? null,
+                    "description" => $translationData["description"][$language->id] ?? null,
+                    "seo_title" => $translationData["seo_title"][$language->id] ?? null,
+                    "seo_description" => $translationData["seo_description"][$language->id] ?? null,
+                    "seo_keywords" => $translationData["seo_keywords"][$language->id] ?? null,
                     "language_id" => $language->id,
-                    "service_id" => $service->id
+                    "service_id" => $model->id
                 ]);
             }
-            return $service->load("translations");
+            return $model->load("translations");
         });
     }
-    public function update(Service $service, array $data): Service
+    public function update(Service $model, array $data): Service
     {
-        return DB::transaction(function () use ($service, $data) {
+        return DB::transaction(function () use ($model, $data) {
             $serviceTranslationData = $data["translations"];
             unset($data["translations"]);
-            $data["icon"] = $this->image_service->update($service, $data, "icon", "services");
-            $data["inner_image"] = $this->image_service->update($service, $data, "inner_image", "services");
+            $data["icon"] = $this->image_service->update($model, $data, "icon", "services");
+            $data["inner_image"] = $this->image_service->update($model, $data, "inner_image", "services");
 
-            $service->update($data);
-            $existingTranslations = $service->translations()->get()->keyBy("language_id");
+            $model->update($data);
+            $existingTranslations = $model->translations()->get()->keyBy("language_id");
 
             foreach ($serviceTranslationData as $field  => $values) {
                 foreach ($values as $languageId => $value) {
@@ -65,21 +65,21 @@ class ServiceRepository implements ServicesRepositoryInterface
                     }
                 }
             }
-            $service->refresh();
+            $model->refresh();
 
-            return $service->load("translations");
+            return $model->load("translations");
         });
     }
 
-    public function destroy(Service $service): Service
+    public function destroy(Service $model): Service
     {
-        $service->load("translations");
-        $service->delete();
-        return $service;
+        $model->load("translations");
+        $model->delete();
+        return $model;
     }
-    public function find(Service $service)
+    public function find(Service $model)
     {
-        $service->load("translations");
-        return $service;
+        $model->load("translations");
+        return $model;
     }
 }
