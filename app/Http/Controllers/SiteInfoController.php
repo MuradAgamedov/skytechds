@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SiteInfo\UpdateRequest;
 use App\Http\Resources\SiteInfo\SiteInfoResource;
 use App\Models\SiteInfo\SiteInfo;
-use Illuminate\Http\Request;
+
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Services\SiteInfoService;
 use App\Support\ApiResponse;
