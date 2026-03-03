@@ -18,7 +18,9 @@ class DictionaryResource extends JsonResource
           return [
             "id" => $this->id,
             "keyword" => $this->keyword,
-            "translations" => DictionaryTranslationResource::collection($this->translations),
+            "translations" => DictionaryTranslationResource::collection(
+                $this->whenLoaded("translations")
+            ),
             "status" => $this->status,
         ];
     }

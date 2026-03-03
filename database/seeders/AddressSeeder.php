@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Address\Address;
 use App\Models\Address\AddressTranslation;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 

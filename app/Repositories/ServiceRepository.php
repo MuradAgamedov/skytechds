@@ -79,6 +79,7 @@ class ServiceRepository implements ServicesRepositoryInterface
     }
     public function find(Service $service)
     {
+        $service->load("translations");
         return $service;
     }
 }

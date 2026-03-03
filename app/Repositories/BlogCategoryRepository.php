@@ -67,6 +67,7 @@ class BlogCategoryRepository implements BlogCategoryRepositoryInterface
     }
     public function find(BlogCategory $blogCategory)
     {
+        $blogCategory->load("translations");
         return $blogCategory;
     }
 }

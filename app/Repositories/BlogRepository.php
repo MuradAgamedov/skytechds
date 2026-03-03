@@ -74,6 +74,7 @@ class BlogRepository implements BlogRepositoryInterface
     }
     public function find(Blog $blog)
     {
+        $blog->load("translations");
         return $blog;
     }
 }

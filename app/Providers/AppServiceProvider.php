@@ -6,6 +6,7 @@ use App\Models\Address\Address;
 use App\Models\Blog\Blog;
 use App\Models\BlogCategory\BlogCategory;
 use App\Models\Email;
+use App\Models\Faq\Faq;
 use App\Models\Phone;
 use App\Models\Language;
 use App\Models\SocialNetwork;
@@ -16,6 +17,7 @@ use App\Observers\LanguageObserver;
 use App\Observers\AddressObserver;
 use App\Observers\BlogCategoryObserver;
 use App\Observers\BlogObserver;
+use App\Observers\FaqObserve;
 use App\Observers\SocialNetworkObserver;
 use App\Observers\MapObserver;
 use Illuminate\Support\ServiceProvider;
@@ -43,5 +45,6 @@ class AppServiceProvider extends ServiceProvider
         Map::observe(MapObserver::class);
         BlogCategory::observe(BlogCategoryObserver::class);
         Blog::observe(BlogObserver::class);
+        Faq::observe(FaqObserve::class);
     }
 }

@@ -17,7 +17,9 @@ class ServiceResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "translations" => ServiceTranslationResource::collection($this->translations),
+            "translations" => ServiceTranslationResource::collection(
+                $this->whenLoaded("translations")
+            ),
             "slug" => $this->slug,
             "icon" => $this->icon ? asset("storage/" . $this->icon) : null,
             "inner_image" => $this->inner_image ? asset("storage/" . $this->inner_image) : null,

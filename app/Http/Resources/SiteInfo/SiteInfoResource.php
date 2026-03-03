@@ -16,7 +16,9 @@ class SiteInfoResource extends JsonResource
     {
          return [
             "id" => $this->id,
-            "translations" => SiteInfoTranslationResource::collection($this->translations),
+            "translations" => SiteInfoTranslationResource::collection(
+                $this->whenLoaded("translations")
+            ),
             "header_logo_light_for_mode" => $this->header_logo_light_for_mode,
             "header_logo_dark_for_mode" => $this->header_logo_dark_for_mode,
             "footer_logo_light_for_mode" => $this->footer_logo_light_for_mode,

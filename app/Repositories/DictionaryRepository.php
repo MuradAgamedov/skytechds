@@ -66,6 +66,7 @@ class DictionaryRepository implements DictionaryRepositoryInterface{
         return $dictionary;
     }
     public function find(Dictionary $dictionary) {
+        $dictionary->load("translations");
         return $dictionary;
     }
 }

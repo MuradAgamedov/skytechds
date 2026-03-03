@@ -66,6 +66,7 @@ class PortfolioRepository implements PortfolioRepositoryInterface
     }
     public function find(Portfolio $portfolio)
     {
+        $portfolio->load("translations");
         return $portfolio;
     }
 

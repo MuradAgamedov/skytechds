@@ -16,7 +16,9 @@ class PortfolioResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "translations" => PortfolioTranslationResource::collection($this->translations),
+            "translations" => PortfolioTranslationResource::collection(
+                $this->whenLoaded("translations")
+            ),
             "status" => $this->status,
             "card_image" => $this->card_image ? asset("storage/" . $this->card_image) : null,
             "url" => $this->url,

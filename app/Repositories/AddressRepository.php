@@ -66,6 +66,7 @@ class AddressRepository implements AddressRepositoryInterface
     }
     public function find(Address $address)
     {
+        $address->load("translations");
         return $address;
     }
 }

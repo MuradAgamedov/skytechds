@@ -17,7 +17,9 @@ class AddressResource extends JsonResource
 
         return [
             "id" => $this->id,
-            "translations" => AddressTranslationResource::collection($this->translations),
+            "translations" => AddressTranslationResource::collection(
+                $this->whenLoaded("translations")
+            ),
             "status" => $this->status,
         ];
     }

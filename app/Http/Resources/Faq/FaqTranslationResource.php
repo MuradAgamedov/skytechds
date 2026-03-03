@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Address;
+namespace App\Http\Resources\Faq;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AddressTranslationResource extends JsonResource
+class FaqTranslationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,12 +14,12 @@ class AddressTranslationResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-
         return [
             "id" => $this->id,
-            "address" => $this->address,
+            "question" => $this->question,
+            "answer" => $this->answer,
+            "faq_id" => $this->faq_id,
             "language_id" => $this->language_id,
-            "address_id" => $this->address_id,
         ];
     }
 }
