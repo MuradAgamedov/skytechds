@@ -14,23 +14,23 @@ class TestimonialService implements TestimonialServiceInterface
     {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Testimonial
+    public function store(array $data)
     {
 
         return $this->repository->store($data);
     }
 
-    public function update(Testimonial $tetsimonial, array $data): Testimonial
+    public function update($tetsimonial, array $data)
     {
         return $this->repository->update($tetsimonial, $data);
     }
 
-    public function destroy(Testimonial $tetsimonial): Testimonial
+    public function destroy($tetsimonial)
     {
         return $this->repository->destroy($tetsimonial);
     }
 
-    public function find(Testimonial $tetsimonial): Testimonial
+    public function find($tetsimonial)
     {
         return $this->repository->find($tetsimonial);
     }

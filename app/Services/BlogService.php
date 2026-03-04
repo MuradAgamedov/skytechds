@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Interfaces\Services\BlogServiceInterface;
-use App\Models\Blog\Blog;
 use App\Repositories\BlogRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -14,23 +13,23 @@ class BlogService implements BlogServiceInterface
     {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Blog
+    public function store(array $data)
     {
 
         return $this->repository->store($data);
     }
 
-    public function update(Blog $blog, array $data): Blog
+    public function update($blog, array $data)
     {
         return $this->repository->update($blog, $data);
     }
 
-    public function destroy(Blog $blog): Blog
+    public function destroy($blog)
     {
         return $this->repository->destroy($blog);
     }
 
-    public function find(Blog $blog): Blog
+    public function find($blog)
     {
         return $this->repository->find($blog);
     }

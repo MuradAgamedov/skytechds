@@ -1,13 +1,9 @@
 <?php
 namespace App\Interfaces\Services;
 
-use App\Models\SocialNetwork;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Interfaces\Services\Base\BaseServiceInterface;
 
-interface SocialNetworkServiceInterface {
-    public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator;
-    public function store(array $data):SocialNetwork;
-    public function update(SocialNetwork $socialNetwork, array $data):SocialNetwork;
-    public function destroy(SocialNetwork $socialNetwork):SocialNetwork;
-    public function find(SocialNetwork $socialNetwork):SocialNetwork;
+
+interface SocialNetworkServiceInterface extends BaseServiceInterface{
+ 
 }

@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\Repositories\AddressRepositoryInterface;
 use App\Interfaces\Repositories\DictionaryRepositoryInterface;
 
 use App\Models\Dictionary\Dictionary;
@@ -36,7 +35,7 @@ class DictionaryRepository implements DictionaryRepositoryInterface{
             return $dictionary->load("translations");
         });
     }
-    public function update(Dictionary $model, array $data):Dictionary {
+    public function update($model, array $data) {
         return DB::transaction(function() use ($model, $data) {
             $translationData = $data["translations"];
             unset($data["translations"]);
@@ -60,12 +59,12 @@ class DictionaryRepository implements DictionaryRepositoryInterface{
         });
     }   
 
-    public function destroy(Dictionary $model):Dictionary {
+    public function destroy($model) {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(Dictionary $model) {
+    public function find($model) {
         $model->load("translations");
         return $model;
     }

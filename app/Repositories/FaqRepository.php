@@ -16,7 +16,7 @@ class FaqRepository implements FaqRepositoryInterface
     {
         return $this->model::with($with)->paginate($limit);
     }
-    public function store(array $data): Faq
+    public function store(array $data)
     {
         return DB::transaction(function () use ($data) {
             $translationData = $data["translations"];
@@ -34,7 +34,7 @@ class FaqRepository implements FaqRepositoryInterface
             return $model->load("translations");
         });
     }
-    public function update(Faq $model, array $data): Faq
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $translationData = $data["translations"];
@@ -58,13 +58,13 @@ class FaqRepository implements FaqRepositoryInterface
         });
     }
 
-    public function destroy(Faq $model): Faq
+    public function destroy($model)
     {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(Faq $model)
+    public function find($model)
     {
         $model->load("translations");
         return $model;

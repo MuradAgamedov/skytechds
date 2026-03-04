@@ -16,29 +16,26 @@ class LanguageService implements LanguageServiceInterface
     {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Language
+    public function store(array $data)
     {
         return $this->repository->store($data);
     }
 
-    public function update(Language $phone, array $data): Language
+    public function update($phone, array $data)
     {
         return $this->repository->update($phone, $data);
     }
 
-    public function destroy(Language $phone): Language
+    public function destroy($phone)
     {
         return $this->repository->destroy($phone);
     }
 
-    public function find(Language $email): Language
+    public function find($email)
     {
         return $this->repository->find($email);
     }
 
 
-    public function findById(int $id): Language
-    {
-        return $this->repository->findById($id);
-    }
+  
 }

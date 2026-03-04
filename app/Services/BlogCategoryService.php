@@ -14,23 +14,23 @@ class BlogCategoryService implements BlogCategoryServiceInterface
     {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): BlogCategory
+    public function store(array $data)
     {
 
         return $this->repository->store($data);
     }
 
-    public function update(BlogCategory $blogCategory, array $data): BlogCategory
+    public function update($blogCategory, array $data)
     {
         return $this->repository->update($blogCategory, $data);
     }
 
-    public function destroy(BlogCategory $blogCategory): BlogCategory
+    public function destroy($blogCategory)
     {
         return $this->repository->destroy($blogCategory);
     }
 
-    public function find(BlogCategory $blogCategory): BlogCategory
+    public function find($blogCategory)
     {
         return $this->repository->find($blogCategory);
     }

@@ -14,20 +14,20 @@ class FaqService implements FaqServiceInterface {
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Faq {
+    public function store(array $data) {
         
         return $this->repository->store($data);
     }
 
-    public function update(Faq $faq, array $data): Faq {
+    public function update($faq, array $data) {
         return $this->repository->update($faq, $data);
     }
 
-    public function destroy(Faq $faq) : Faq {
+    public function destroy($faq)  {
         return $this->repository->destroy($faq);
     }
 
-    public function find(Faq $faq) : Faq {
+    public function find($faq)  {
         return $this->repository->find($faq);
     }
 }

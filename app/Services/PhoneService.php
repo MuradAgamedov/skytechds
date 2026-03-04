@@ -3,9 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\Services\PhoneServiceInterface;
-use App\Models\Phone;
 use App\Repositories\PhoneRepository;
-use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class PhoneService implements PhoneServiceInterface {
@@ -16,19 +14,19 @@ class PhoneService implements PhoneServiceInterface {
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Phone {
+    public function store(array $data) {
         return $this->repository->store($data);
     }
 
-    public function update(Phone $phone, array $data): Phone {
+    public function update($phone, array $data) {
         return $this->repository->update($phone, $data);
     }
 
-    public function destroy(Phone $phone) : Phone {
+    public function destroy($phone)  {
         return $this->repository->destroy($phone);
     }
 
-    public function find(Phone $phone) : Phone {
+    public function find($phone)  {
         return $this->repository->find($phone);
     }
 

@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Interfaces\Repositories\ServicesRepositoryInterface;
-use App\Models\BlogCategory\BlogCategory;
 use App\Models\Services\Service;
 use App\Models\Services\ServiceTranslation;
 use App\Services\LanguageService;
@@ -18,7 +17,7 @@ class ServiceRepository implements ServicesRepositoryInterface
     {
         return $this->model::with($with)->paginate($limit);
     }
-    public function store(array $data): Service
+    public function store(array $data)
     {
         return DB::transaction(function () use ($data) {
             $translationData = $data["translations"];
@@ -44,7 +43,7 @@ class ServiceRepository implements ServicesRepositoryInterface
             return $model->load("translations");
         });
     }
-    public function update(Service $model, array $data): Service
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $serviceTranslationData = $data["translations"];
@@ -71,13 +70,13 @@ class ServiceRepository implements ServicesRepositoryInterface
         });
     }
 
-    public function destroy(Service $model): Service
+    public function destroy($model)
     {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(Service $model)
+    public function find($model)
     {
         $model->load("translations");
         return $model;

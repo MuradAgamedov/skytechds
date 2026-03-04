@@ -8,7 +8,6 @@ use App\Http\Resources\BlogCategory\BlogCategoryResource;
 use App\Models\BlogCategory\BlogCategory;
 use App\Services\BlogCategoryService;
 use App\Support\ApiResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BlogCategoryController extends Controller

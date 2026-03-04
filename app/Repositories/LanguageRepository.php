@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Language;
-use App\Models\Map;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Interfaces\Repositories\LanguageRepositoryInterface;
 
@@ -15,28 +14,25 @@ class LanguageRepository implements LanguageRepositoryInterface
     {
         return $this->model::with($with)->paginate($limit);
     }
-    public function store(array $data): Language
+    public function store(array $data)
     {
         return $this->model::create($data);
     }
-    public function update(Language $language, array $data): Language
+    public function update($language, array $data)
     {
         $language->update($data);
         $language->refresh();
         return $language;
     }
-    public function destroy(Language $language): Language
+    public function destroy($language)
     {
         $language->delete();
         return $language;
     }
-    public function find(Language $language)
+    public function find($language)
     {
         return $language;
     }
 
-    public function findById(int $id): Language
-    {
-        return $this->model::findOrFail($id);
-    }
+  
 }

@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\Repositories\BlogCategoryRepositoryInterface;
 use App\Interfaces\Repositories\BlogRepositoryInterface;
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogTranslation;
@@ -40,7 +39,7 @@ class BlogRepository implements BlogRepositoryInterface
             return $model->load("translations");
         });
     }
-    public function update(Blog $model, array $data): Blog
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $translationData = $data["translations"];
@@ -66,13 +65,13 @@ class BlogRepository implements BlogRepositoryInterface
         });
     }
 
-    public function destroy(Blog $model): Blog
+    public function destroy($model)
     {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(Blog $model)
+    public function find($model)
     {
         $model->load("translations");
         return $model;

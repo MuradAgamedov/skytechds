@@ -2,9 +2,9 @@
 
 namespace App\Interfaces\Services;
 
-use App\Models\About\About;
+use App\Interfaces\Services\Base\FirstServiceInterface;
+use App\Interfaces\Services\Base\UpdateServiceInterface;
 
-interface AboutServiceInterface {
-    public function update(About $about, array $data):About;
-    public function first():About;
+interface AboutServiceInterface extends FirstServiceInterface, UpdateServiceInterface {
+ 
 }

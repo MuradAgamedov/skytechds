@@ -2,13 +2,8 @@
 
 namespace App\Interfaces\Repositories;
 
-use App\Models\Map;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Interfaces\Repositories\Base\BaseRepositoryInterface;
 
-interface MapRepositoryInterface {
-    public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator;
-    public function store(array $data);
-    public function update($map, array $data);
-    public function destroy($map);
-    public function find($map);
+interface MapRepositoryInterface extends BaseRepositoryInterface{
+
 }

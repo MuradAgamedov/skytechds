@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Interfaces\Services\PortfolioServiceInterface;
-use App\Models\Portfolio\Portfolio;
 use App\Repositories\PortfolioRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -14,23 +13,23 @@ class PortfolioService implements PortfolioServiceInterface
     {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Portfolio
+    public function store(array $data)
     {
 
         return $this->repository->store($data);
     }
 
-    public function update(Portfolio $portfolio, array $data): Portfolio
+    public function update($portfolio, array $data)
     {
         return $this->repository->update($portfolio, $data);
     }
 
-    public function destroy(Portfolio $portfolio): Portfolio
+    public function destroy($portfolio)
     {
         return $this->repository->destroy($portfolio);
     }
 
-    public function find(Portfolio $portfolio): Portfolio
+    public function find($portfolio)
     {
         return $this->repository->find($portfolio);
     }

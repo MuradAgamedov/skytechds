@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\DB;
 
 class TestimonialRepository implements TestimonialRepositoryInterface
 {
-    public function __construct(public Testimonial $model, public TestimonialTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {}
+    public function __construct(public Testimonial  $model, public TestimonialTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {}
     public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
     {
         return $this->model::with($with)->paginate($limit);
     }
-    public function store(array $data): Testimonial
+    public function store(array $data)
     {
         return DB::transaction(function () use ($data) {
             $translationData = $data["translations"];
@@ -38,7 +38,7 @@ class TestimonialRepository implements TestimonialRepositoryInterface
     }
 
 
-    public function update(Testimonial $model, array $data): Testimonial
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $testimonialTranslationData = $data["translations"];
@@ -64,13 +64,13 @@ class TestimonialRepository implements TestimonialRepositoryInterface
         });
     }
 
-    public function destroy(Testimonial $model): Testimonial
+    public function destroy($model)
     {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(Testimonial $model)
+    public function find($model)
     {
         $model->load("translations");
         return $model;

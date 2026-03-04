@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Interfaces\Services\StatisticServiceInterface;
-use App\Models\Statistics\Statistic;
 use App\Repositories\StatisticRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -14,20 +13,20 @@ class StatisticService implements StatisticServiceInterface {
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Statistic {
+    public function store(array $data) {
         
         return $this->repository->store($data);
     }
 
-    public function update(Statistic $statistic, array $data): Statistic {
+    public function update($statistic, array $data) {
         return $this->repository->update($statistic, $data);
     }
 
-    public function destroy(Statistic $statistic) : Statistic {
+    public function destroy($statistic)  {
         return $this->repository->destroy($statistic);
     }
 
-    public function find(Statistic $statistic) : Statistic {
+    public function find($statistic)  {
         return $this->repository->find($statistic);
     }
 }

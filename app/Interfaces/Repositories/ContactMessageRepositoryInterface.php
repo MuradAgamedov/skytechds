@@ -2,13 +2,12 @@
 
 namespace App\Interfaces\Repositories;
 
+use App\Interfaces\Repositories\Base\CreateRepositoryInterface;
+use App\Interfaces\Repositories\Base\DeleteRepositoryInterface;
+use App\Interfaces\Repositories\Base\FindRepositoryInterface;
+use App\Interfaces\Repositories\Base\ReadRepositoryInterface;
 use App\Models\ContactMessage;
-use Illuminate\Pagination\LengthAwarePaginator;
 
-interface ContactMessageRepositoryInterface {
-    public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator;
-    public function store(array $data);
-    public function destroy($message);
-    public function find($message);
+interface ContactMessageRepositoryInterface extends ReadRepositoryInterface, CreateRepositoryInterface, DeleteRepositoryInterface, FindRepositoryInterface{
     public function toggleRead(ContactMessage $model) : ContactMessage;
 }

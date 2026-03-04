@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class PortfolioRepository implements PortfolioRepositoryInterface
 {
-    public function __construct(public Portfolio $model, public PortfolioTranslation $translationModel, public LanguageService $languageService) {}
+    public function __construct(public Portfolio  $model, public PortfolioTranslation $translationModel, public LanguageService $languageService) {}
     public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
     {
         return $this->model::with($with)->paginate($limit);
     }
-    public function store(array $data): Portfolio
+    public function store(array $data)
     {
         return DB::transaction(function () use ($data) {
             $translationData = $data["translations"];
@@ -34,7 +34,7 @@ class PortfolioRepository implements PortfolioRepositoryInterface
             return $model->load("translations");
         });
     }
-    public function update(Portfolio $model, array $data): Portfolio
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $translationData = $data["translations"];
@@ -58,13 +58,13 @@ class PortfolioRepository implements PortfolioRepositoryInterface
         });
     }
 
-    public function destroy(Portfolio $model): Portfolio
+    public function destroy($model)
     {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(Portfolio $model)
+    public function find($model)
     {
         $model->load("translations");
         return $model;

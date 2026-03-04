@@ -11,11 +11,11 @@ class SiteInfoService implements SiteInfoServiceInterface {
     {
     }
 
-    public function update(SiteInfo $siteInfo, array $data): SiteInfo {
+    public function update($siteInfo, array $data) {
         return $this->repository->update($siteInfo, $data);
     }
 
-    public function first() : SiteInfo {
+    public function first()  {
         return $this->repository->first();
     }
 }

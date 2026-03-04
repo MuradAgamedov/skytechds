@@ -16,7 +16,7 @@ class BlogCategoryRepository implements BlogCategoryRepositoryInterface
     {
         return $this->model::with($with)->paginate($limit);
     }
-    public function store(array $data): BlogCategory
+    public function store(array $data)
     {
         return DB::transaction(function () use ($data) {
             $translationData = $data["translations"];
@@ -35,7 +35,7 @@ class BlogCategoryRepository implements BlogCategoryRepositoryInterface
             return $model->load("translations");
         });
     }
-    public function update(BlogCategory $model, array $data): BlogCategory
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $translationData = $data["translations"];
@@ -59,13 +59,13 @@ class BlogCategoryRepository implements BlogCategoryRepositoryInterface
         });
     }
 
-    public function destroy(BlogCategory $model): BlogCategory
+    public function destroy($model)
     {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(BlogCategory $model)
+    public function find($model)
     {
         $model->load("translations");
         return $model;

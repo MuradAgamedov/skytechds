@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class SiteInfoRepository implements SiteInfoRepositoryInterface
 {
-    public function __construct(public SiteInfo $model, public SiteInfoTranslation $translationModel) {}
+    public function __construct(public SiteInfo  $model, public SiteInfoTranslation $translationModel) {}
     public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
     {
         return $this->model::with($with)->paginate($limit);
     }
    
-    public function update(SiteInfo $model, array $data): SiteInfo
+    public function update( $model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $translationData = $data["translations"];

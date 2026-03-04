@@ -2,31 +2,30 @@
 
 namespace App\Services;
 
-use App\Interfaces\Repositories\DictionaryRepositoryInterface;
-use App\Models\Dictionary\Dictionary;
+use App\Interfaces\Services\DictionaryServiceInterface;
 use App\Repositories\DictionaryRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class DictionaryService implements DictionaryRepositoryInterface {
+class DictionaryService implements DictionaryServiceInterface {
     public function __construct(public DictionaryRepository $repository)
     {
     }
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Dictionary {
+    public function store(array $data){
         return $this->repository->store($data);
     }
 
-    public function update(Dictionary $dictionary, array $data): Dictionary {
+    public function update($dictionary, array $data){
         return $this->repository->update($dictionary, $data);
     }
 
-    public function destroy(Dictionary $dictionary) : Dictionary {
+    public function destroy($dictionary) {
         return $this->repository->destroy($dictionary);
     }
 
-    public function find(Dictionary $dictionary) : Dictionary {
+    public function find($dictionary) {
         return $this->repository->find($dictionary);
     }
 }

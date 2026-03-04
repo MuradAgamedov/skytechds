@@ -34,7 +34,7 @@ class AddressRepository implements AddressRepositoryInterface
             return $model->load("translations");
         });
     }
-    public function update(Address $model, array $data): Address
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $translationData = $data["translations"];
@@ -58,13 +58,13 @@ class AddressRepository implements AddressRepositoryInterface
         });
     }
 
-    public function destroy(Address $model): Address
+    public function destroy($model)
     {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(Address $model)
+    public function find($model)
     {
         $model->load("translations");
         return $model;

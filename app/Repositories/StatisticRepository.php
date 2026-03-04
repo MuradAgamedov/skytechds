@@ -17,7 +17,7 @@ class StatisticRepository implements StatisticRepositoryInterface
     {
         return $this->model::with($with)->paginate($limit);
     }
-    public function store(array $data): Statistic
+    public function store(array $data)
     {
         return DB::transaction(function () use ($data) {
             $translationData = $data["translations"];
@@ -35,7 +35,7 @@ class StatisticRepository implements StatisticRepositoryInterface
             return $model->load("translations");
         });
     }
-    public function update(Statistic $model, array $data): Statistic
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $translationData = $data["translations"];
@@ -59,13 +59,13 @@ class StatisticRepository implements StatisticRepositoryInterface
         });
     }
 
-    public function destroy(Statistic $model): Statistic
+    public function destroy($model)
     {
         $model->load("translations");
         $model->delete();
         return $model;
     }
-    public function find(Statistic $model)
+    public function find($model)
     {
         $model->load("translations");
         return $model;

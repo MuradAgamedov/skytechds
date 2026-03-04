@@ -15,8 +15,10 @@ class AboutRepository implements AboutRepositoryInterface
     {
         return $this->model::with($with)->paginate($limit);
     }
+
+ 
    
-    public function update(About $model, array $data): About
+    public function update($model, array $data)
     {
         return DB::transaction(function () use ($model, $data) {
             $translationData = $data["translations"];
@@ -43,6 +45,7 @@ class AboutRepository implements AboutRepositoryInterface
   
     public function first():About
     {
+
         return $this->model::with("translations")->first();
     }
 }

@@ -15,19 +15,19 @@ class SocialNetworkService implements SocialNetworkServiceInterface {
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): SocialNetwork {
+    public function store(array $data) {
         return $this->repository->store($data);
     }
 
-    public function update(SocialNetwork $socialNetwork, array $data): SocialNetwork {
+    public function update($socialNetwork, array $data) {
         return $this->repository->update($socialNetwork, $data);
     }
 
-    public function destroy(SocialNetwork $socialNetwork) : SocialNetwork {
+    public function destroy($socialNetwork)  {
         return $this->repository->destroy($socialNetwork);
     }
 
-    public function find(SocialNetwork $socialNetwork) : SocialNetwork {
+    public function find($socialNetwork)  {
         return $this->repository->find($socialNetwork);
     }
 

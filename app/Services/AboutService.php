@@ -3,8 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\Services\AboutServiceInterface;
-use App\Interfaces\Services\SiteInfoServiceInterface;
-use App\Models\About\About;
+
 use App\Repositories\AboutRepository;
 
 class AboutService implements AboutServiceInterface {
@@ -12,11 +11,11 @@ class AboutService implements AboutServiceInterface {
     {
     }
 
-    public function update(About $about, array $data): About {
+    public function update($about, array $data) {
         return $this->repository->update($about, $data);
     }
 
-    public function first() : About {
+    public function first()  {
         return $this->repository->first();
     }
 }

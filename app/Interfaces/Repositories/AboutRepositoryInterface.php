@@ -2,9 +2,9 @@
 
 namespace App\Interfaces\Repositories;
 
-use App\Models\About\About;
+use App\Interfaces\Repositories\Base\FirstRepositoryInterface;
+use App\Interfaces\Repositories\Base\UpdateRepositoryInterface;
 
-interface AboutRepositoryInterface {
-    public function update(About $about, array $data):About;
-    public function first():About;
+interface AboutRepositoryInterface extends UpdateRepositoryInterface, FirstRepositoryInterface {
+   
 }

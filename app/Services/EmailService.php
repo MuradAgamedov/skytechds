@@ -14,19 +14,19 @@ class EmailService implements EmailServiceInterface{
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Email {
+    public function store(array $data) {
         return $this->repository->store($data);
     }
 
-    public function update(Email $phone, array $data): Email {
+    public function update($phone, array $data) {
         return $this->repository->update($phone, $data);
     }
 
-    public function destroy(Email $phone) : Email {
+    public function destroy($phone)  {
         return $this->repository->destroy($phone);
     }
 
-    public function find(Email $email) : Email {
+    public function find($email)  {
         return $this->repository->find($email);
     }
 }

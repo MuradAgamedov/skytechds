@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Interfaces\Services\MapServiceInterface;
-use App\Models\Map;
 use App\Repositories\MapRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -15,19 +14,19 @@ class MapService implements MapServiceInterface {
     public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator {
         return $this->repository->getWidthPagination($with, $limit);
     }
-    public function store(array $data): Map {
+    public function store(array $data) {
         return $this->repository->store($data);
     }
 
-    public function update(Map $phone, array $data): Map {
+    public function update($phone, array $data) {
         return $this->repository->update($phone, $data);
     }
 
-    public function destroy(Map $phone) : Map {
+    public function destroy($phone)  {
         return $this->repository->destroy($phone);
     }
 
-    public function find(Map $phone) : Map {
+    public function find($phone)  {
         return $this->repository->find($phone);
     }
 

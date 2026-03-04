@@ -1,12 +1,8 @@
 <?php
 namespace App\Interfaces\Repositories;
 
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Interfaces\Repositories\Base\BaseRepositoryInterface;
 
-interface PhoneRepositoryInterface {
-    public function getWidthPagination(array $with = [], int $limit = 60):LengthAwarePaginator;
-    public function store(array $data);
-    public function update($phone, array $data);
-    public function destroy($phone);
-    public function find($phone);
+interface PhoneRepositoryInterface extends BaseRepositoryInterface {
+    
 }

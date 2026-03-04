@@ -2,9 +2,9 @@
 
 namespace App\Interfaces\Repositories;
 
-use App\Models\SiteInfo\SiteInfo;
+use App\Interfaces\Repositories\Base\FirstRepositoryInterface;
+use App\Interfaces\Repositories\Base\UpdateRepositoryInterface;
 
-interface SiteInfoRepositoryInterface {
-    public function update(SiteInfo $siteInfo, array $data):SiteInfo;
-    public function first():SiteInfo;
+interface SiteInfoRepositoryInterface extends UpdateRepositoryInterface, FirstRepositoryInterface  {
+   
 }
