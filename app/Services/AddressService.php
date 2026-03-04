@@ -26,7 +26,7 @@ class AddressService implements AddressServiceInterface {
         return $this->repository->destroy($address);
     }
 
-    public function find($address)  {
-        return $this->repository->find($address);
+    public function find($id)  {
+        return $this->repository->find($id);
     }
 }

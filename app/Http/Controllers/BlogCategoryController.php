@@ -2,72 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Base\WithTranslation\BaseController;
 use App\Http\Requests\BlogCategory\CreateRequest;
 use App\Http\Requests\BlogCategory\UpdateRequest;
 use App\Http\Resources\BlogCategory\BlogCategoryResource;
-use App\Models\BlogCategory\BlogCategory;
 use App\Services\BlogCategoryService;
-use App\Support\ApiResponse;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
-class BlogCategoryController extends Controller
+
+class BlogCategoryController extends BaseController
 {
-    public function __construct(public BlogCategoryService $blogCategory_service) {}
-
-    public function index(): JsonResponse
-    {
-        $blog_categories = $this->blogCategory_service->getWidthPagination(['translations']);
-
-        return ApiResponse::success(
-            BlogCategoryResource::collection($blog_categories),
-            "Blog Categories fetched successfully",
-            200
-        );
-    }
-
-    public function store(CreateRequest $request): JsonResponse
-    {
-        $blogCategory = $this->blogCategory_service->store($request->validated());
-
-        return ApiResponse::success(
-            new BlogCategoryResource($blogCategory),
-            "Blog Category added successfully",
-            200
-        );
-    }
-
-
-    public function update(UpdateRequest $request, BlogCategory $blogCategory): JsonResponse
-    {
-        $blogCategory = $this->blogCategory_service->update($blogCategory, $request->validated());
-
-        return ApiResponse::success(
-            new BlogCategoryResource($blogCategory),
-            "Blog Category updated successfully",
-            200
-        );
-    }
-
-    public function destroy(BlogCategory $blogCategory): JsonResponse
-    {
-        $blogCategory = $this->blogCategory_service->destroy($blogCategory);
-
-        return ApiResponse::success(
-            new BlogCategoryResource($blogCategory),
-            "Blog Category deleted successfully",
-            200
-        );
-    }
-
-
-    public function show(BlogCategory $blogCategory): JsonResponse
-    {
-        $email = $this->blogCategory_service->find($blogCategory);
-
-        return ApiResponse::success(
-            new BlogCategoryResource($email),
-            "Blog Category fetched successfully",
-            200
-        );
+    public function __construct(public BlogCategoryService $blogCategory_service) {
+        $this->service = $blogCategory_service;
+        $this->resource = BlogCategoryResource::class;
+        $this->create_request = CreateRequest::class;
+        $this->update_request = UpdateRequest::class;
     }
 }

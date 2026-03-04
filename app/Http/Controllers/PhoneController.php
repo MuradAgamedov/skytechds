@@ -2,103 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Base\WithoutTranslation\BaseController;
 use App\Http\Requests\Phone\CreateRequest;
 use App\Http\Requests\Phone\UpdateRequest;
 use App\Http\Resources\PhoneResource;
-use App\Models\Phone;
 use App\Services\PhoneService;
-use App\Support\ApiResponse;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 
-class PhoneController extends Controller
+
+class PhoneController extends BaseController
 {
-    public function __construct(public PhoneService $phone_service)
+    public function __construct(public PhoneService $email_service)
     {
-    }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $phones = $this->phone_service->getWidthPagination();
-        return ApiResponse::success(
-            PhoneResource::collection($phones),
-            "Phones fetched successfully",
-            200
-        );
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(CreateRequest $request):JsonResponse
-    {
-        $phone = $this->phone_service->store($request->validated());
-
-        return ApiResponse::success(
-            new PhoneResource($phone),
-            "Phone added successfully",
-            200
-        );
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Phone $phone)
-    {
-        $phone = $this->phone_service->find($phone);
-
-        return ApiResponse::success(
-            new PhoneResource($phone),
-            "Phone fetched successfully",
-            200
-        );
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateRequest $request, Phone $phone):JsonResponse
-    {
-        $phone = $this->phone_service->update($phone, $request->validated());
-
-        return ApiResponse::success(
-            new PhoneResource($phone),
-            "Phone updated successfully",
-            200
-        );
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Phone $phone):JsonResponse
-    {
-        $phone = $this->phone_service->destroy($phone);
-
-        
-        return ApiResponse::success(
-            new PhoneResource($phone),
-            "Phone deleted successfully",
-            200
-        );
+        $this->service = $email_service;
+        $this->resource = PhoneResource::class;
+        $this->create_request = CreateRequest::class;
+        $this->update_request = UpdateRequest::class;
     }
 }

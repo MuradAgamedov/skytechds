@@ -2,69 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Base\WithoutTranslation\BaseController;
 use App\Http\Requests\Language\CreateRequest;
 use App\Http\Requests\Language\UpdateRequest;
 use App\Http\Resources\LanguageResource;
-use App\Models\Language;
 use App\Services\LanguageService;
-use App\Support\ApiResponse;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
-class LanguageController extends Controller
+
+class LanguageController extends BaseController
 {
-     public function __construct(public LanguageService $language_service)
+    public function __construct(public LanguageService $email_service)
     {
-    }
-
-    public function index():JsonResponse {
-        $languages = $this->language_service->getWidthPagination();
-
-        return ApiResponse::success(
-            LanguageResource::collection($languages),
-            "Languages fetched successfully",
-            200
-        );
-    }
-
-    public function store(CreateRequest $request):JsonResponse {
-        $language = $this->language_service->store($request->validated());
-
-        return ApiResponse::success(
-            new LanguageResource($language),
-            "Language added successfully",
-            200
-        );
-    }
-
-
-    public function update(UpdateRequest $request, Language $language):JsonResponse {
-        $language = $this->language_service->update($language, $request->validated());
-
-        return ApiResponse::success(
-            new LanguageResource($language),
-            "Language updated successfully",
-            200
-        );
-    }
-
-    public function destroy(Language $language):JsonResponse {
-        $language = $this->language_service->destroy($language);
-
-        return ApiResponse::success(
-            new LanguageResource($language),
-            "Language deleted successfully",
-            200
-        );
-    }
-    
-
-    public function show(Language $language) {
-         $language = $this->language_service->find($language);
-
-        return ApiResponse::success(
-            new LanguageResource($language),
-            "Map fetched successfully",
-            200
-        );
+        $this->service = $email_service;
+        $this->resource = LanguageResource::class;
+        $this->create_request = CreateRequest::class;
+        $this->update_request = UpdateRequest::class;
     }
 }

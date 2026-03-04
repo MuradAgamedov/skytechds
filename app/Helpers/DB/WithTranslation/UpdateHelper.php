@@ -11,14 +11,16 @@ trait UpdateHelper
     public $translationRelationField;
     public $folderName;
 
-    public function update($model, array $data)
+    public function update($id, array $data)
     {
-        return DB::transaction(function () use ($model, $data) {
+        return DB::transaction(function () use ($id, $data) {
+            $model = $this->find($id);
             $images = $this->classifier($data)["images"];
 
             foreach($images as $key => $image) {
                 $data[$key] = $this->image_service->update($model, $data, $key, $this->folderName);
             } 
+
             $translationData = $data["translations"];
             unset($data["translations"]);
             $model->update($data);

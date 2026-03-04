@@ -2,43 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\DB\Controller\WithTranslation\FirstTrait;
+use App\Helpers\DB\Controller\WithTranslation\UpdateTrait;
 use App\Http\Requests\SiteInfo\UpdateRequest;
 use App\Http\Resources\SiteInfo\SiteInfoResource;
-use App\Models\SiteInfo\SiteInfo;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Services\SiteInfoService;
-use App\Support\ApiResponse;
 
 class SiteInfoController extends Controller
 {
+    use FirstTrait, UpdateTrait;
     public function __construct(public SiteInfoService $site_info_service)
     {
+        $this->service = $site_info_service;
+        $this->resource = SiteInfoResource::class;
+        $this->update_request = UpdateRequest::class;
     }
 
-   public function index() {
-        $siteInfo = $this->site_info_service->first();
-
-        return ApiResponse::success(
-            new SiteInfoResource($siteInfo),
-            "Site informations fetched successfully",
-            200
-        );
-    }
-
-
-    public function update(UpdateRequest $request, SiteInfo $siteInfo):JsonResponse {
-        $siteInfo = $this->site_info_service->update($siteInfo, $request->validated());
-
-        return ApiResponse::success(
-            new SiteInfoResource($siteInfo),
-            "Site informations updated successfully",
-            200
-        );
-    }
-
-    
-    
-
+   
  
 }

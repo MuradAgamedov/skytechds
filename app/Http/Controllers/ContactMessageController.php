@@ -7,7 +7,6 @@ use App\Http\Resources\ContactMessageResource;
 use App\Models\ContactMessage;
 use App\Services\ContactMessageService;
 use App\Support\ApiResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ContactMessageController extends Controller

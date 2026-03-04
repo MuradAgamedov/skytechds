@@ -2,71 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Base\WithTranslation\BaseController;
 use App\Http\Requests\Blog\CreateRequest;
 use App\Http\Requests\Blog\UpdateRequest;
-use App\Http\Resources\Blog\BlogResource;
-use App\Models\Blog\Blog;
+use App\Http\Resources\BlogCategory\BlogCategoryResource;
 use App\Services\BlogService;
-use App\Support\ApiResponse;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
-class BlogController extends Controller
+
+class BlogController extends BaseController
 {
-    public function __construct(public BlogService $blogCategory_service) {}
-
-    public function index(): JsonResponse
-    {
-        $blog_categories = $this->blogCategory_service->getWidthPagination(['translations']);
-
-        return ApiResponse::success(
-            BlogResource::collection($blog_categories),
-            "Blogs fetched successfully",
-            200
-        );
+    public function __construct(public BlogService $blog_service) {
+        $this->service = $blog_service;
+        $this->resource = BlogCategoryResource::class;
+        $this->create_request = CreateRequest::class;
+        $this->update_request = UpdateRequest::class;
     }
 
-    public function store(CreateRequest $request): JsonResponse
-    {
-        $blogCategory = $this->blogCategory_service->store($request->validated());
-
-        return ApiResponse::success(
-            new BlogResource($blogCategory),
-            "Blog added successfully",
-            200
-        );
-    }
-
-
-    public function update(UpdateRequest $request, Blog $blog): JsonResponse
-    {
-        $blog = $this->blogCategory_service->update($blog, $request->validated());
-        return ApiResponse::success(
-            new BlogResource($blog),
-            "Blog updated successfully",
-            200
-        );
-    }
-
-    public function destroy(Blog $blog): JsonResponse
-    {
-        $blog = $this->blogCategory_service->destroy($blog);
-
-        return ApiResponse::success(
-            new BlogResource($blog),
-            "Blog deleted successfully",
-            200
-        );
-    }
-
-
-    public function show(Blog $blog): JsonResponse
-    {
-        $blog = $this->blogCategory_service->find($blog);
-
-        return ApiResponse::success(
-            new BlogResource($blog),
-            "Blog fetched successfully",
-            200
-        );
-    }
+   
 }
