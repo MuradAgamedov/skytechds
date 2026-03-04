@@ -5,32 +5,12 @@ namespace App\Services;
 use App\Interfaces\Services\ServiceServiceInterface;
 
 use App\Repositories\ServiceRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Services\Base\BaseService;
 
-class ServiceService implements ServiceServiceInterface
+class ServiceService extends BaseService implements ServiceServiceInterface
 {
-    public function __construct(public ServiceRepository $repository) {}
-    public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
+    public function __construct(public ServiceRepository $main_repository)
     {
-        return $this->repository->getWidthPagination($with, $limit);
-    }
-    public function store(array $data)
-    {
-        return $this->repository->store($data);
-    }
-
-    public function update($service, array $data)
-    {
-        return $this->repository->update($service, $data);
-    }
-
-    public function destroy($service)
-    {
-        return $this->repository->destroy($service);
-    }
-
-    public function find($service)
-    {
-        return $this->repository->find($service);
+        $this->repository=$main_repository;
     }
 }

@@ -2,15 +2,9 @@
 
 namespace App\Helpers\DB\WithoutTranslation;
 
-use Illuminate\Database\Eloquent\Model;
-
-
 trait FindHelper 
 {
-
-    public function find($model) {
-        return $model;
+    public function find($id) {
+       return $this->model::findOrFail($id);
     }
-   
-  
 }

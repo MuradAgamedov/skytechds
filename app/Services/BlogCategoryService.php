@@ -3,35 +3,13 @@
 namespace App\Services;
 
 use App\Interfaces\Services\BlogCategoryServiceInterface;
-use App\Models\BlogCategory\BlogCategory;
 use App\Repositories\BlogCategoryRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Services\Base\BaseService;
 
-class BlogCategoryService implements BlogCategoryServiceInterface
+class BlogCategoryService extends BaseService implements BlogCategoryServiceInterface
 {
-    public function __construct(public BlogCategoryRepository $repository) {}
-    public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
+    public function __construct(public BlogCategoryRepository $main_repository)
     {
-        return $this->repository->getWidthPagination($with, $limit);
-    }
-    public function store(array $data)
-    {
-
-        return $this->repository->store($data);
-    }
-
-    public function update($blogCategory, array $data)
-    {
-        return $this->repository->update($blogCategory, $data);
-    }
-
-    public function destroy($blogCategory)
-    {
-        return $this->repository->destroy($blogCategory);
-    }
-
-    public function find($blogCategory)
-    {
-        return $this->repository->find($blogCategory);
+        $this->repository=$main_repository;
     }
 }

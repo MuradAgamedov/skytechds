@@ -3,19 +3,13 @@
 namespace App\Services;
 
 use App\Interfaces\Services\SiteInfoServiceInterface;
-use App\Models\SiteInfo\SiteInfo;
 use App\Repositories\SiteInfoRepository;
+use App\Helpers\DB\Services\FirstTrait;
+use App\Helpers\DB\Services\UpdateTrait;
 
 class SiteInfoService implements SiteInfoServiceInterface {
+    use FirstTrait, UpdateTrait;
     public function __construct(public SiteInfoRepository $repository)
     {
-    }
-
-    public function update($siteInfo, array $data) {
-        return $this->repository->update($siteInfo, $data);
-    }
-
-    public function first()  {
-        return $this->repository->first();
     }
 }

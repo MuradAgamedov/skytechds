@@ -3,35 +3,13 @@
 namespace App\Services;
 
 use App\Interfaces\Services\TestimonialServiceInterface;
-use App\Models\Testimonial\Testimonial;
 use App\Repositories\TestimonialRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Services\Base\BaseService;
 
-class TestimonialService implements TestimonialServiceInterface
+class TestimonialService extends BaseService implements TestimonialServiceInterface
 {
-    public function __construct(public TestimonialRepository $repository) {}
-    public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
+    public function __construct(public TestimonialRepository $main_repository)
     {
-        return $this->repository->getWidthPagination($with, $limit);
-    }
-    public function store(array $data)
-    {
-
-        return $this->repository->store($data);
-    }
-
-    public function update($tetsimonial, array $data)
-    {
-        return $this->repository->update($tetsimonial, $data);
-    }
-
-    public function destroy($tetsimonial)
-    {
-        return $this->repository->destroy($tetsimonial);
-    }
-
-    public function find($tetsimonial)
-    {
-        return $this->repository->find($tetsimonial);
+        $this->repository=$main_repository;
     }
 }

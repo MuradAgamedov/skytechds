@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Helpers\DB\Controller\WithoutTranslation;
+
+use App\Support\ApiResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+trait CreateTrait {
+    public function store():JsonResponse {
+        $request = app($this->create_request);
+        $result = $this->service->store($request->validated());
+
+        return ApiResponse::success(
+            new $this->resource($result),
+            "Email added successfully",
+            200
+        );
+    }
+}

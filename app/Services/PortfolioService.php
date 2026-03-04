@@ -4,33 +4,12 @@ namespace App\Services;
 
 use App\Interfaces\Services\PortfolioServiceInterface;
 use App\Repositories\PortfolioRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Services\Base\BaseService;
 
-class PortfolioService implements PortfolioServiceInterface
+class PortfolioService extends BaseService implements PortfolioServiceInterface
 {
-    public function __construct(public PortfolioRepository $repository) {}
-    public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
+    public function __construct(public PortfolioRepository $main_repository)
     {
-        return $this->repository->getWidthPagination($with, $limit);
-    }
-    public function store(array $data)
-    {
-
-        return $this->repository->store($data);
-    }
-
-    public function update($portfolio, array $data)
-    {
-        return $this->repository->update($portfolio, $data);
-    }
-
-    public function destroy($portfolio)
-    {
-        return $this->repository->destroy($portfolio);
-    }
-
-    public function find($portfolio)
-    {
-        return $this->repository->find($portfolio);
+        $this->repository=$main_repository;
     }
 }
