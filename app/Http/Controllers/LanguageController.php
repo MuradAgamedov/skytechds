@@ -7,7 +7,7 @@ use App\Http\Requests\Language\CreateRequest;
 use App\Http\Requests\Language\UpdateRequest;
 use App\Http\Resources\LanguageResource;
 use App\Services\LanguageService;
-
+use App\Support\Messages\LanguageMessages;
 
 class LanguageController extends BaseController
 {
@@ -17,5 +17,6 @@ class LanguageController extends BaseController
         $this->resource = LanguageResource::class;
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
+        $this->messagesModel = LanguageMessages::class;
     }
 }

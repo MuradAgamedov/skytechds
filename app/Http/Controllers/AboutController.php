@@ -7,7 +7,7 @@ use App\Helpers\DB\Controller\WithTranslation\UpdateTrait;
 use App\Http\Requests\About\UpdateRequest;
 use App\Http\Resources\About\AboutResource;
 use App\Services\AboutService;
-
+use App\Support\Messages\AboutMessages;
 
 class AboutController extends Controller
 {
@@ -17,6 +17,7 @@ class AboutController extends Controller
         $this->service = $site_info_service;
         $this->resource = AboutResource::class;
         $this->update_request = UpdateRequest::class;
+        $this->messagesModel = AboutMessages::class;
     }
     
 }

@@ -7,7 +7,7 @@ use App\Http\Requests\BlogCategory\CreateRequest;
 use App\Http\Requests\BlogCategory\UpdateRequest;
 use App\Http\Resources\BlogCategory\BlogCategoryResource;
 use App\Services\BlogCategoryService;
-
+use App\Support\Messages\BlogCategoryMessages;
 
 class BlogCategoryController extends BaseController
 {
@@ -16,5 +16,6 @@ class BlogCategoryController extends BaseController
         $this->resource = BlogCategoryResource::class;
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
+        $this->messagesModel = BlogCategoryMessages::class;
     }
 }

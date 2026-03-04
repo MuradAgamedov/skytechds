@@ -13,7 +13,7 @@ trait UpdateTrait {
 
         return ApiResponse::success(
             new $this->resource($email),
-            "Email updated successfully",
+            $this->messagesModel::UPDATED,
             200
         );
     }

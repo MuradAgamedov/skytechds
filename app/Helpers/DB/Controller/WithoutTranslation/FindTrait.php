@@ -11,7 +11,7 @@ trait FindTrait {
     
         return ApiResponse::success(
             new $this->resource($email),
-            "Email fetched successfully",
+            $this->messagesModel::FETCHED,
             200
         );
     }

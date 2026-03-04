@@ -7,7 +7,7 @@ use App\Http\Requests\Dictionary\CreateRequest;
 use App\Http\Requests\Dictionary\UpdateRequest;
 use App\Http\Resources\BlogCategory\BlogCategoryResource;
 use App\Services\DictionaryService;
-
+use App\Support\Messages\DictionaryMessages;
 
 class DictionaryController extends BaseController
 {
@@ -17,6 +17,7 @@ class DictionaryController extends BaseController
         $this->resource = BlogCategoryResource::class;
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
+        $this->messagesModel = DictionaryMessages::class;
     }
 
 }

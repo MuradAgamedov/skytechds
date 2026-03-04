@@ -7,7 +7,7 @@ use App\Http\Requests\Faq\CreateRequest;
 use App\Http\Requests\Faq\UpdateRequest;
 use App\Http\Resources\Faq\FaqResource;
 use App\Services\FaqService;
-
+use App\Support\Messages\FaqMessages;
 
 class FaqController extends BaseController
 {
@@ -17,5 +17,6 @@ class FaqController extends BaseController
         $this->resource = FaqResource::class;
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
+        $this->messagesModel = FaqMessages::class;
     }
 }

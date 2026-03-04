@@ -11,7 +11,7 @@ trait First {
 
         return ApiResponse::success(
             $this->resource::collection($results),
-            "Emails fetched successfully",
+            $this->messagesModel::FETCHED,
             200
         );
     }

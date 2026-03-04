@@ -16,4 +16,5 @@ class BaseController extends Controller {
     public $create_request;
     public $update_request;
     public $model;
+    public $messagesModel;
 }

@@ -7,8 +7,7 @@ use App\Http\Requests\Address\CreateRequest;
 use App\Http\Requests\Address\UpdateRequest;
 use App\Http\Resources\Address\AddressResource;
 use App\Services\AddressService;
-
-
+use App\Support\Messages\AddressMessages;
 
 class AddressController extends BaseController
 {
@@ -18,8 +17,6 @@ class AddressController extends BaseController
         $this->resource = AddressResource::class;
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
-
+        $this->messagesModel = AddressMessages::class;
     }
-
-    
 }

@@ -7,8 +7,7 @@ use App\Http\Requests\Phone\CreateRequest;
 use App\Http\Requests\Phone\UpdateRequest;
 use App\Http\Resources\PhoneResource;
 use App\Services\PhoneService;
-
-
+use App\Support\Messages\PhoneMessages;
 
 class PhoneController extends BaseController
 {
@@ -18,5 +17,6 @@ class PhoneController extends BaseController
         $this->resource = PhoneResource::class;
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
+        $this->messagesModel = PhoneMessages::class;
     }
 }

@@ -13,7 +13,7 @@ trait DeleteTrait
 
         return ApiResponse::success(
             new $this->resource($result),
-            "Address deleted successfully",
+            $this->messagesModel::DELETED,
             200
         );
     }

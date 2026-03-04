@@ -11,7 +11,7 @@ trait DeleteTrait {
 
         return ApiResponse::success(
             new $this->resource($email),
-            "Email deleted successfully",
+            $this->messagesModel::DELETED,
             200
         );
     }

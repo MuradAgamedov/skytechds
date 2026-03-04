@@ -13,7 +13,7 @@ trait CreateTrait
 
         return ApiResponse::success(
             new $this->resource($result),
-            "Address added successfully",
+            $this->messagesModel::CREATED,
             200
         );
     }

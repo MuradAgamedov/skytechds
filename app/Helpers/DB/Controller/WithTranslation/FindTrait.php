@@ -12,7 +12,7 @@ trait FindTrait
 
         return ApiResponse::success(
             new $this->resource($result),
-            "Address fetched successfully",
+            $this->messagesModel::FETCHED,
             200
         );
     }

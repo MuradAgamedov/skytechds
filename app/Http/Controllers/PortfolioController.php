@@ -7,7 +7,7 @@ use App\Http\Requests\Portfolio\CreateRequest;
 use App\Http\Requests\Portfolio\UpdateRequest;
 use App\Http\Resources\Portfolio\PortfolioResource;
 use App\Services\PortfolioService;
-
+use App\Support\Messages\PortfolioMessages;
 
 class PortfolioController extends BaseController
 {
@@ -16,5 +16,6 @@ class PortfolioController extends BaseController
         $this->resource = PortfolioResource::class;
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
+        $this->messagesModel = PortfolioMessages::class;
     }
 }

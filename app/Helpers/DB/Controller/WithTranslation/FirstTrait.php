@@ -12,7 +12,7 @@ trait FirstTrait
 
         return ApiResponse::success(
             new $this->resource($result),
-            "Address added successfully",
+            $this->messagesModel::FETCHED,
             200
         );
     }

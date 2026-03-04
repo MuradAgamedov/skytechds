@@ -12,7 +12,7 @@ trait CreateTrait {
 
         return ApiResponse::success(
             new $this->resource($result),
-            "Email added successfully",
+            $this->messagesModel::CREATED,
             200
         );
     }

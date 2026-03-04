@@ -12,7 +12,7 @@ trait UpdateTrait
         $result = $this->service->update($id, $request->validated());
         return ApiResponse::success(
             new $this->resource($result),
-            "Address updated successfully",
+            $this->messagesModel::UPDATED,
             200
         );
     }

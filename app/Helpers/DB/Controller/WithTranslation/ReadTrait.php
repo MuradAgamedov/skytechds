@@ -12,7 +12,7 @@ trait ReadTrait
         
         return ApiResponse::success(
             $this->resource::collection($results),
-            "Addresses fetched successfully",
+            $this->messagesModel::FETCHED,
             200
         );
     }
