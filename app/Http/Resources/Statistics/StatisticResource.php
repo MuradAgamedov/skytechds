@@ -19,6 +19,7 @@ class StatisticResource extends JsonResource
             "translations" => StatisticTranslationResource::collection(
                 $this->whenLoaded("translations")
             ),
+            "icon" => $this->icon,
             "status" => $this->id
 
         ];

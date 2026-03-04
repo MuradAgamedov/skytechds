@@ -20,7 +20,7 @@ class BlogResource extends JsonResource
                 $this->whenLoaded("translations")
             ),
             "slug" => $this->slug,
-            "card_image" => $this->card_image ? asset("storage/" . $this->card_image) : null,
+            "card_image" => $this->card_image,
             "status" => $this->status,
         ];
     }

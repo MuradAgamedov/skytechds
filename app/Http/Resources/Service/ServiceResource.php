@@ -21,8 +21,8 @@ class ServiceResource extends JsonResource
                 $this->whenLoaded("translations")
             ),
             "slug" => $this->slug,
-            "icon" => $this->icon ? asset("storage/" . $this->icon) : null,
-            "inner_image" => $this->inner_image ? asset("storage/" . $this->inner_image) : null,
+            "icon" => $this->icon,
+            "inner_image" => $this->inner_image,
             "status" => $this->status,
         ];
     }

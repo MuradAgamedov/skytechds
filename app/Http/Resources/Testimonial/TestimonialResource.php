@@ -19,7 +19,7 @@ class TestimonialResource extends JsonResource
             "translations" => TestimonialTranslationResource::collection(
                 $this->whenLoaded("translations")
             ),
-            "photo" => $this->photo ? asset("storage/" . $this->photo) : null,
+            "photo" => $this->photo,
             "status" => $this->id
         ];
     }

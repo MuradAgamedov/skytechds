@@ -20,8 +20,7 @@ class AboutResource extends JsonResource
             "translations" => AboutTranslationResource::collection(
                 $this->whenLoaded("translations")
             ),
-            "image" => $this->image ? asset("storage/" . $this->image) : null,
-
+            "image" => $this->image,
         ];
     }
 }

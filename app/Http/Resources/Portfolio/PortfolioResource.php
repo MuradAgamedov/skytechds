@@ -20,7 +20,7 @@ class PortfolioResource extends JsonResource
                 $this->whenLoaded("translations")
             ),
             "status" => $this->status,
-            "card_image" => $this->card_image ? asset("storage/" . $this->card_image) : null,
+            "card_image" => $this->card_image,
             "url" => $this->url,
         ];
     }

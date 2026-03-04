@@ -2,7 +2,6 @@
 
 namespace App\Helpers\DB\WithoutTranslation;
 
-use Illuminate\Database\Eloquent\Model;
 
 
 trait CreateHelper 
