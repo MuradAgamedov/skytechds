@@ -8,4 +8,5 @@ class ContactMessageMessages
     public const UPDATED = "Contact message updated successfully";
     public const DELETED = "Contact message deleted successfully";
     public const FETCHED = "Contact message fetched successfully";
+    public const TOGGLE_READ = "Contact message read status toggled successfully";
 }
