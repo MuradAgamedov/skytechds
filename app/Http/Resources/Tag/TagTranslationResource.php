@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Testimonial;
+namespace App\Http\Resources\Tag;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TestimonialTranslationResource extends JsonResource
+class TagTranslationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,7 @@ class TestimonialTranslationResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "full_name" => $this->full_name,
-            "company" => $this->company,
-            "position" => $this->position,
+            "title" => $this->title
         ];
     }
 }

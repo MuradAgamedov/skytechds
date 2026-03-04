@@ -15,10 +15,12 @@ class ApiResponse {
     }
 
 
-    public static function error($message=null,$statusCode=400) : JsonResponse {
+    public static function error($e=null,$statusCode=400) : JsonResponse {
         return response()->json([
             "success" => false,
-            "message" => $message
+            "message" => $e->getMessage(),
+            "line" => $e->getLine(),
+            "file" => $e->getFile()
         ], $statusCode);
     }
 }

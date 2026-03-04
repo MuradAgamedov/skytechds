@@ -35,7 +35,7 @@ return Application::configure(basePath: dirname(__DIR__))
             if ($request->is('api/*')) {
 
                 if (config('app.debug')) {
-                    return ApiResponse::error($e->getMessage(), 500);
+                    return ApiResponse::error($e, 500);
                 }
 
                 return ApiResponse::error("Server error", 500);
