@@ -8,7 +8,6 @@ use App\Http\Resources\LanguageResource;
 use App\Models\Language;
 use App\Services\LanguageService;
 use App\Support\ApiResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class LanguageController extends Controller
@@ -43,7 +42,7 @@ class LanguageController extends Controller
 
         return ApiResponse::success(
             new LanguageResource($language),
-            "Maps updated successfully",
+            "Language updated successfully",
             200
         );
     }
@@ -53,7 +52,7 @@ class LanguageController extends Controller
 
         return ApiResponse::success(
             new LanguageResource($language),
-            "Maps deleted successfully",
+            "Language deleted successfully",
             200
         );
     }

@@ -2,6 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Helpers\DB\WithoutTranslation\CreateHelper;
+use App\Helpers\DB\WithoutTranslation\DeleteHelper;
+use App\Helpers\DB\WithoutTranslation\FindHelper;
+use App\Helpers\DB\WithoutTranslation\ReadHelper;
+use App\Helpers\DB\WithoutTranslation\UpdateHelper;
 use App\Models\Language;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Interfaces\Repositories\LanguageRepositoryInterface;
@@ -9,30 +14,8 @@ use App\Interfaces\Repositories\LanguageRepositoryInterface;
 
 class LanguageRepository implements LanguageRepositoryInterface
 {
+    use CreateHelper, UpdateHelper, DeleteHelper, FindHelper, ReadHelper;
     public function __construct(public Language $model) {}
-    public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
-    {
-        return $this->model::with($with)->paginate($limit);
-    }
-    public function store(array $data)
-    {
-        return $this->model::create($data);
-    }
-    public function update($language, array $data)
-    {
-        $language->update($data);
-        $language->refresh();
-        return $language;
-    }
-    public function destroy($language)
-    {
-        $language->delete();
-        return $language;
-    }
-    public function find($language)
-    {
-        return $language;
-    }
-
+ 
   
 }

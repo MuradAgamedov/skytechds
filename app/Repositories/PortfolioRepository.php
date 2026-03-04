@@ -2,72 +2,25 @@
 
 namespace App\Repositories;
 
+use App\Helpers\DB\WithTranslation\CreateHelper;
+use App\Helpers\DB\WithTranslation\DeleteHelper;
+use App\Helpers\DB\WithTranslation\FindHelper;
+use App\Helpers\DB\WithTranslation\ReadHelper;
+use App\Helpers\DB\WithTranslation\UpdateHelper;
 use App\Interfaces\Repositories\PortfolioRepositoryInterface;
-use App\Models\BlogCategory\BlogCategory;
-use App\Models\BlogCategory\BlogCategoryTranslation;
+
 use App\Models\Portfolio\Portfolio;
 use App\Models\Portfolio\PortfolioTranslation;
 use App\Services\LanguageService;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
+
 
 class PortfolioRepository implements PortfolioRepositoryInterface
 {
-    public function __construct(public Portfolio  $model, public PortfolioTranslation $translationModel, public LanguageService $languageService) {}
-    public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
-    {
-        return $this->model::with($with)->paginate($limit);
+    use ReadHelper, CreateHelper, UpdateHelper, DeleteHelper, FindHelper;
+    public function __construct(public Portfolio  $model, public PortfolioTranslation $translationModel, public LanguageService $languageService) {
+        $this->folderName = "portfolios";
+        $this->translationRelationField = "portfolio_id";
     }
-    public function store(array $data)
-    {
-        return DB::transaction(function () use ($data) {
-            $translationData = $data["translations"];
-            unset($data["translations"]);
-            $model = $this->model->create($data);
-            foreach ($this->languageService->getWidthPagination() as $language) {
-                $this->translationModel::create([
-                    "title" => $translationData["title"][$language->id] ?? null,
-                    "language_id" => $language->id,
-                    "portfolio_id" => $model->id
-                ]);
-            }
-            return $model->load("translations");
-        });
-    }
-    public function update($model, array $data)
-    {
-        return DB::transaction(function () use ($model, $data) {
-            $translationData = $data["translations"];
-            unset($data["translations"]);
-            $model->update($data);
-            $existingTranslations = $model->translations()->get()->keyBy("language_id");
-
-            foreach ($translationData as $field  => $values) {
-                foreach ($values as $languageId => $value) {
-
-                    if (isset($existingTranslations[$languageId])) {
-                        $existingTranslations[$languageId]->update([
-                            $field => $value,
-                        ]);
-                    }
-                }
-            }
-            $model->refresh();
-
-            return $model->load("translations");
-        });
-    }
-
-    public function destroy($model)
-    {
-        $model->load("translations");
-        $model->delete();
-        return $model;
-    }
-    public function find($model)
-    {
-        $model->load("translations");
-        return $model;
-    }
+    
 
 }

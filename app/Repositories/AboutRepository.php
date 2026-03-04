@@ -2,50 +2,22 @@
 
 namespace App\Repositories;
 
+use App\Helpers\DB\WithTranslation\ReadHelper;
+use App\Helpers\DB\WithTranslation\UpdateHelper;
+use App\Helpers\DB\WithTranslation\FirstHelper;
+
 use App\Interfaces\Repositories\AboutRepositoryInterface;
 use App\Models\About\About;
 use App\Models\About\AboutTranslation;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
+
 
 class AboutRepository implements AboutRepositoryInterface
 {
+    use ReadHelper, UpdateHelper, FirstHelper;
     public function __construct(public About $model, public AboutTranslation $translationModel) {}
-    public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
-    {
-        return $this->model::with($with)->paginate($limit);
-    }
+    
 
  
    
-    public function update($model, array $data)
-    {
-        return DB::transaction(function () use ($model, $data) {
-            $translationData = $data["translations"];
-            unset($data["translations"]);
-            $model->update($data);
-            $existingTranslations = $model->translations()->get()->keyBy("language_id");
-
-            foreach ($translationData as $field  => $values) {
-                foreach ($values as $languageId => $value) {
-
-                    if (isset($existingTranslations[$languageId])) {
-                        $existingTranslations[$languageId]->update([
-                            $field => $value,
-                        ]);
-                    }
-                }
-            }
-            $model->refresh();
-
-            return $model->load("translations");
-        });
-    }
-
   
-    public function first():About
-    {
-
-        return $this->model::with("translations")->first();
-    }
 }

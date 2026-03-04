@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Interfaces\Repositories\StatisticRepositoryInterface;
-use App\Models\BlogCategory\BlogCategory;
 use App\Models\Statistics\Statistic;
 use App\Models\Statistics\StatisticTranslation;
 use App\Services\LanguageService;
