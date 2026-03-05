@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         $rules = [
             "status" => ["nullable", "boolean"],
             "order" => ["integer", "nullable"],
-            "card_image" => ["nullable", "boolean"],
+            "card_image" => ["nullable"],
             "url" => ["nullable", "string", "max:255", "url"],
             "translations" => ["required", "array"],
             "translations.title" => ["required", "array"],
