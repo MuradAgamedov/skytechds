@@ -26,7 +26,7 @@ class CreateRequest extends FormRequest
         $rules = [
             "status" => ["required", "boolean"],
             "order" => ["integer", "boolean", "nullable"],
-            "icon" => ["integer", "image", "nullable", "mimes:jpg,jpeg,png,webp", "max:2048"],
+            "icon" => ["image", "nullable", "mimes:jpg,jpeg,png,webp", "max:2048"],
             "translations" => ["required", "array"],
             "translations.icon_alt_text" => ["required", "array"],
             "translations.title" => ["required", "array"],
