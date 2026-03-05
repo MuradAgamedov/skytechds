@@ -12,15 +12,15 @@ use App\Interfaces\Repositories\PortfolioRepositoryInterface;
 use App\Models\Portfolio\Portfolio;
 use App\Models\Portfolio\PortfolioTranslation;
 use App\Services\LanguageService;
-
+use App\Support\ImageService;
 
 class PortfolioRepository implements PortfolioRepositoryInterface
 {
     use ReadHelper, CreateHelper, UpdateHelper, DeleteHelper, FindHelper;
-    public function __construct(public Portfolio  $model, public PortfolioTranslation $translationModel, public LanguageService $languageService) {
+    public function __construct(public Portfolio  $model, public PortfolioTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {
         $this->folderName = "portfolios";
         $this->translationRelationField = "portfolio_id";
     }
-    
+
 
 }
