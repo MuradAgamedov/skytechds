@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
         $languages = Language::where("status", true)->orderBy("order")->get();
         $rules = [
             "status" => ["required", "boolean"],
-            "order" => ["integer", "boolean", "required"],
+            "order" => ["integer", "boolean", "nullable"],
             "translations" => ["required", "array"],
             "translations.icon_alt_text" => ["required", "array"],
             "translations.title" => ["required", "array"],
