@@ -16,6 +16,7 @@ class BlogCategoryResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "slug" => $this->slug,
             "translations" => BlogCategoryTranslationResource::collection($this->translations),
             "status" => $this->status,
         ];
