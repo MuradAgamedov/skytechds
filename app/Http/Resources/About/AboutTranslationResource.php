@@ -17,7 +17,7 @@ class AboutTranslationResource extends JsonResource
 
         return [
             "id" => $this->id,
-            "image_alt_text" => $this->address,
+            "image_alt_text" => $this->image_alt_text,
             "text" => $this->text,
         ];
     }
