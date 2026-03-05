@@ -25,7 +25,9 @@ class UpdateRequest extends FormRequest
             "title" => ["required", "max:255"],
             "lang_code" => ["required", "max:2"],
             "order" => ["integer"],
-            "status" => ["status"]
+            "status" => ["boolean"],
+            "is_default" => ["boolean"]
+
         ];
     }
 }
