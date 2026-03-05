@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         $rules = [
             "status" => ["nullable", "boolean"],
             "order" => ["integer", "nullable"],
-            "slug" => ["string", "required", "unique:blogs,slug," . $this->route("blog")->id],
+            "slug" => ["string", "required", "unique:blogs,slug," . $this->blog],
             "card_image" => ["image", "nullable", "mimes:jpg,jpeg,png,webp", "max:2048"],
             "translations" => ["required", "array"],
             "translations.title" => ["required", "array"],
