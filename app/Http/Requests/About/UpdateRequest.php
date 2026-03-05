@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     {
         $languages = Language::where("status", true)->orderBy("order")->get();
         $rules = [
-            "image" => ["nullable", "max:2048", "mimes:jpg, jpeg, png"],
+            "image" => ["nullable", "max:2048", "mimes:jpg,jpeg,png"],
             "translations" => ["required", "array"],
             "translations.image_alt_text" => ["required", "array"],
             "translations.text" => ["required", "array"],
