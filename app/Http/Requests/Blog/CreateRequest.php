@@ -27,6 +27,7 @@ class CreateRequest extends FormRequest
             "status" => ["nullable", "boolean"],
             "order" => ["integer", "nullable"],
             "slug" => ["string", "required", "unique:blogs,slug"],
+            "blog_category_id" => ["nullable", "exists:blog_categories,id"],
             "card_image" => ["image", "required", "mimes:jpg,jpeg,png,webp", "max:2048"],
             "translations" => ["required", "array"],
             "translations.title" => ["required", "array"],

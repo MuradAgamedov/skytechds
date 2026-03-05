@@ -26,6 +26,7 @@ class BlogResource extends JsonResource
             "slug" => $this->slug,
             "card_image" => $this->card_image,
             "status" => $this->status,
+            "blog_category_id" => $this->blog_category_id,
         ];
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Blog extends Model
 {
-    protected $fillable = ["slug", "card_image", "published_at"];
+    protected $fillable = ["slug", "card_image", "published_at", "status", "blog_category_id", "order"];
 
     protected function cardImage() : Attribute {
         return Attribute::make(

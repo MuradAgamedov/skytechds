@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
             "status" => ["nullable", "boolean"],
             "order" => ["integer", "nullable"],
             "slug" => ["string", "required", "unique:blogs,slug," . $this->blog],
+            "blog_category_id" => ["nullable", "exists:blog_categories,id"],
             "card_image" => ["image", "nullable", "mimes:jpg,jpeg,png,webp", "max:2048"],
             "translations" => ["required", "array"],
             "translations.title" => ["required", "array"],
