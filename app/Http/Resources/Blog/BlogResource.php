@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Blog;
 
+use App\Http\Resources\Tag\TagResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,6 +19,9 @@ class BlogResource extends JsonResource
             "id" => $this->id,
             "translations" => BlogResourceTranslation::collection(
                 $this->whenLoaded("translations")
+            ),
+            "tags" => TagResource::collection(
+                $this->whenLoaded("tags")
             ),
             "slug" => $this->slug,
             "card_image" => $this->card_image,

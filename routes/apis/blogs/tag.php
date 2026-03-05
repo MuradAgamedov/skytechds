@@ -3,4 +3,6 @@
 use App\Repositories\TagRepository;
 use Illuminate\Support\Facades\Route;
 
-Route::resource("tags", TagRepository::class);
+use App\Http\Controllers\TagController;
+
+Route::resource("tags", TagController::class);

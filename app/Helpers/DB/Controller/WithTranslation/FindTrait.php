@@ -8,7 +8,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 trait FindTrait 
 {
     public function show($result) : JsonResponse {
-        $result = $this->service->find($result);
+        $relations = [];
+        if (method_exists($this, 'getEagerLoadRelations')) {
+            $relations = $this->getEagerLoadRelations();
+        }
+        $result = $this->service->find($result, $relations);
 
         return ApiResponse::success(
             new $this->resource($result),

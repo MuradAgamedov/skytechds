@@ -34,7 +34,7 @@ class UpdateRequest extends FormRequest
             "translations.seo_description" => ["required", "array"],
             "translations.seo_keywords" => ["required", "array"],
             "translations.description" => ["required", "array"],
-
+            "tags" => ["array"],
 
         ];
 

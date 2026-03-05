@@ -3,7 +3,7 @@
 namespace App\Helpers\DB\Services;
 
 trait FindTrait {
-    public function find($id)  {
-        return $this->repository->find($id);
+    public function find($id, array $relations = [])  {
+        return $this->repository->find($id, $relations);
     }
 }

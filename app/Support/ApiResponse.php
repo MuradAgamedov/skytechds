@@ -23,5 +23,15 @@ class ApiResponse {
             "file" => $e->getFile()
         ], $statusCode);
     }
+
+    public static function validationError($e=null,$statusCode=400) : JsonResponse {
+        return response()->json([
+            "success" => false,
+            "errors" => $e,
+            
+        ], $statusCode);
+    }
+
+
 }
 

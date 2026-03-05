@@ -14,6 +14,15 @@ trait UpdateHelper
     public function update($id, array $data)
     {
         return DB::transaction(function () use ($id, $data) {
+            $syncRelations = array_filter(
+                $data,
+                fn($element, $key) =>
+                    is_array($element) &&
+                    $key !== "translations" &&
+                    method_exists($this->model, $key),
+                ARRAY_FILTER_USE_BOTH
+            );
+
             $model = $this->find($id);
             $images = $this->classifier($data)["images"];
 
@@ -36,9 +45,16 @@ trait UpdateHelper
                     }
                 }
             }
-            $model->refresh();
+            $relations = ["translations"];
 
-            return $model->load("translations");
+            if (count($syncRelations) > 0) {
+                foreach ($syncRelations as $field => $syncRelation) {
+                    $model->{$field}()->sync($syncRelation);
+                    $relations[] = $field;
+                }
+            }
+            $model->refresh();
+            return $model->loadMissing($relations);
         });
     }
 }

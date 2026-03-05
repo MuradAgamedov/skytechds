@@ -14,7 +14,16 @@ trait CreateHelper
     public function store(array $data)
     {
         return DB::transaction(function () use ($data) {
-            
+
+            $syncRelations = array_filter(
+                $data,
+                fn($element, $key) =>
+                    is_array($element) &&
+                    $key !== "translations" &&
+                    method_exists($this->model, $key),
+                ARRAY_FILTER_USE_BOTH
+            );
+
             $images = $this->classifier($data)["images"];
 
             foreach($images as $key => $image) {
@@ -38,7 +47,16 @@ trait CreateHelper
 
                 $this->translationModel::create($translation);
             }
-            return $model->load("translations");
+            $relations = ["translations"];
+
+            if (count($syncRelations) > 0) {
+                foreach ($syncRelations as $field => $syncRelation) {
+                    $model->{$field}()->sync($syncRelation);
+                    $relations[] = $field;
+                }
+            }
+
+            return $model->loadMissing($relations);
         });
     }
 }

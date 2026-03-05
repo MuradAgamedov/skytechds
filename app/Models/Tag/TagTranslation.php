@@ -8,7 +8,11 @@ class TagTranslation extends Model
 {
     protected $fillable = ["title", "language_id", "tag_id"];
 
-    public function translation() {
-        return $this->belongsTo(TagTranslation::class);
+    public function tag() {
+        return $this->belongsTo(Tag::class, 'tag_id');
+    }
+
+    public function blogs() {
+        return $this->belongsToMany(Blog::class);
     }
 }

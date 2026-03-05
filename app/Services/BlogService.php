@@ -12,4 +12,5 @@ class BlogService extends BaseService implements BlogServiceInterface
     {
         $this->repository=$main_repository;
     }
+    
 }

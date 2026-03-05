@@ -8,7 +8,7 @@ trait DeleteHelper
     public function destroy($id)
     {
         $model = $this->find($id);
-        $model->load("translations");
+        $model->loadMissing("translations");
         $model->delete();
         return $model;
     }

@@ -8,12 +8,20 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 trait ReadTrait 
 {
     public function index():JsonResponse {
-        $results = $this->service->getWidthPagination(['translations']);
+        $relations = ['translations'];
+        if (method_exists($this, 'getEagerLoadRelations')) {
+            $relations = array_merge($relations, $this->getEagerLoadRelations());
+        }
+        $results = $this->service->getWidthPagination($relations);
         
         return ApiResponse::success(
             $this->resource::collection($results),
             $this->messagesModel::FETCHED,
             200
         );
+    }
+    
+    protected function getEagerLoadRelations(): array {
+        return [];
     }
 }

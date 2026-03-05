@@ -2,6 +2,7 @@
 
 namespace App\Models\Blog;
 
+use App\Models\Tag\Tag;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -19,5 +20,9 @@ class Blog extends Model
     public function translations()
     {
         return $this->hasMany(BlogTranslation::class);
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
     }
 }
