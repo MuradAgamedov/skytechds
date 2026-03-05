@@ -15,6 +15,8 @@ use App\Helpers\DB\WithTranslation\UpdateHelper;
 class StatisticRepository implements StatisticRepositoryInterface
 {
     use CreateHelper, ReadHelper, UpdateHelper, DeleteHelper, FindHelper;
-    public function __construct(public Statistic $model, public StatisticTranslation $translationModel, public LanguageService $languageService) {}
+    public function __construct(public Statistic $model, public StatisticTranslation $translationModel, public LanguageService $languageService) {
+        $this->translationRelationField = "statistic_id";
+    }
 
 }
