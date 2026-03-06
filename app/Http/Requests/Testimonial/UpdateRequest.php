@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         $rules = [
             "status" => ["required", "boolean"],
             "order" => ["integer", "boolean", "nullable"],
-            "photo" => ["image", "required", "mimes:jpg,jpeg,png,webp", "max:2048"],
+            "photo" => ["image", "mimes:jpg,jpeg,png,webp", "max:2048"],
             "translations" => ["required", "array"],
             "translations.full_name" => ["required", "array"],
             "translations.position" => ["required", "array"],

@@ -20,7 +20,7 @@ class TestimonialResource extends JsonResource
                 $this->whenLoaded("translations")
             ),
             "photo" => $this->photo,
-            "status" => $this->id
+            "status" => $this->status
         ];
     }
 }
