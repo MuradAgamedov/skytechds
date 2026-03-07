@@ -56,7 +56,7 @@ class SiteInfoSeeder extends Seeder
                 "favicon" => $infos["favicon"],
         ]);
 
-        foreach([3, 4, 5] as $languageId) {
+        foreach([1, 2, 3] as $languageId) {
             SiteInfoTranslation::create([
                 "header_logo_light_for_mode_alt_text" => $infos["translations"]["header_logo_light_for_mode_alt_text"][$languageId],
                 "header_logo_dark_for_mode_alt_text" => $infos["translations"]["header_logo_dark_for_mode_alt_text"][$languageId],
