@@ -8,8 +8,7 @@ use App\Helpers\DB\WithTranslation\UpdateHelper;
 use App\Interfaces\Repositories\SiteInfoRepositoryInterface;
 use App\Models\SiteInfo\SiteInfo;
 use App\Models\SiteInfo\SiteInfoTranslation;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
+
 
 class SiteInfoRepository implements SiteInfoRepositoryInterface
 {
@@ -18,5 +17,5 @@ class SiteInfoRepository implements SiteInfoRepositoryInterface
         $this->folderName = "site_infos";
         $this->translationRelationField = "site_info_id";
     }
-  
+
 }
