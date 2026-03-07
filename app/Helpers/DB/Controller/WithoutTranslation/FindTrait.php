@@ -10,7 +10,7 @@ trait FindTrait {
          $email = $this->service->find($id);
     
         return ApiResponse::success(
-            new $this->resource($email),
+            $email ? new $this->resource($email) : null,
             $this->messagesModel::FETCHED,
             200
         );

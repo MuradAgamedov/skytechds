@@ -11,7 +11,7 @@ trait FirstTrait
         $result = $this->service->first();
 
         return ApiResponse::success(
-            new $this->resource($result),
+            $result ? new $this->resource($result) : null,
             $this->messagesModel::FETCHED,
             200
         );

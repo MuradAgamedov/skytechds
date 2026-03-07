@@ -10,7 +10,7 @@ trait First {
         $results = $this->service->first();
 
         return ApiResponse::success(
-            $this->resource::collection($results),
+            $results ? new $this->resource($results) : null,
             $this->messagesModel::FETCHED,
             200
         );
