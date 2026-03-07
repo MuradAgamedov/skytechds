@@ -24,24 +24,24 @@ class SiteInfoSeeder extends Seeder
             "favicon" => "favicon.svg",
             "translations" => [
                 "header_logo_light_for_mode_alt_text" => [
-                    3 => "header_logo_light_for_mode_alt_text_az",
-                    4 => "header_logo_light_for_mode_alt_text_en",
-                    5 => "header_logo_light_for_mode_alt_text_ru"
+                    1 => "header_logo_light_for_mode_alt_text_az",
+                    2 => "header_logo_light_for_mode_alt_text_en",
+                    3 => "header_logo_light_for_mode_alt_text_ru"
                 ],
                 "header_logo_dark_for_mode_alt_text" => [
-                    3 => "header_logo_dark_for_mode_alt_text_az",
-                    4 => "header_logo_dark_for_mode_alt_textt_en",
-                    5 => "header_logo_dark_for_mode_alt_text_ru"
+                    1 => "header_logo_dark_for_mode_alt_text_az",
+                    2 => "header_logo_dark_for_mode_alt_textt_en",
+                    3 => "header_logo_dark_for_mode_alt_text_ru"
                 ],
                 "footer_logo_light_mode_alt_text" => [
-                    3 => "footer_logo_light_mode_alt_text_az",
-                    4 => "footer_logo_light_mode_alt_text_en",
-                    5 => "footer_logo_light_mode_alt_text_ru"
+                    1 => "footer_logo_light_mode_alt_text_az",
+                    2 => "footer_logo_light_mode_alt_text_en",
+                    3 => "footer_logo_light_mode_alt_text_ru"
                 ],
                 "footer_logo_dark_mode_alt_text" => [
-                    3 => "footer_logo_dark_mode_alt_text_az",
-                    4 => "footer_logo_dark_mode_alt_text_en",
-                    5 => "footer_logo_dark_mode_alt_text_ru"
+                    1 => "footer_logo_dark_mode_alt_text_az",
+                    2 => "footer_logo_dark_mode_alt_text_en",
+                    3 => "footer_logo_dark_mode_alt_text_ru"
                 ],
             ]
 
