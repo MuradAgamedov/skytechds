@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\About;
+namespace App\Http\Requests\Team;
 
 use App\Models\Language;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class CreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,18 @@ class UpdateRequest extends FormRequest
     {
         $languages = Language::where("status", true)->orderBy("order")->get();
         $rules = [
-            "image" => ["nullable", "max:2048", "mimes:jpg,jpeg,png,webp"],
+            "status" => ["nullable", "boolean"],
+            "order" => ["nullable", "integer"],
+            "image" => ["required", "image", "mimes:jpeg,png,jpg,gif,svg,webp", "max:2048"],
             "translations" => ["required", "array"],
-            "translations.image_alt_text" => ["required", "array"],
-            "translations.text" => ["required", "array"],
+            "translations.name" => ["required", "array"],
+            "translations.position" => ["required", "array"],   
+
         ];
 
         foreach($languages as $language) {
-            $rules["translations.image_alt_text.".$language->id] = ["required"];
-            $rules["translations.text.".$language->id] = ["required"];
+            $rules["translations.name.".$language->id] = ["required"];
+            $rules["translations.position.".$language->id] = ["required"];
         }
 
         return $rules;

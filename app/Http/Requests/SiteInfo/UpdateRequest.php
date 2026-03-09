@@ -24,11 +24,11 @@ class UpdateRequest extends FormRequest
     {
         $languages = Language::where("status", true)->orderBy("order")->get();
         $rules = [
-            "header_logo_light_for_mode" => ["nullable", "max:2048", "mimes:jpg,svg,png,jpeg"],
-            "header_logo_dark_for_mode" => ["nullable", "max:2048", "mimes:jpg,svg,png,jpeg"],
-            "footer_logo_light_for_mode" => ["nullable", "max:2048", "mimes:jpg,svg,png,jpeg"],
-            "footer_logo_dark_for_mode" => ["nullable", "max:2048","mimes:jpg,svg,png,jpeg"],
-            "favicon" => ["nullable", "max:2048", "mimes:jpg,svg,png,jpeg"],
+            "header_logo_light_for_mode" => ["nullable", "max:2048", "mimes:jpg,svg,png,jpeg,webp"],
+            "header_logo_dark_for_mode" => ["nullable", "max:2048", "mimes:jpg,svg,png,jpeg,webp"],
+            "footer_logo_light_for_mode" => ["nullable", "max:2048", "mimes:jpg,svg,png,jpeg,webp"],
+            "footer_logo_dark_for_mode" => ["nullable", "max:2048","mimes:jpg,svg,png,jpeg,webp"],
+            "favicon" => ["nullable", "max:2048", "mimes:jpg,svg,png,jpeg,webp"],
             "translations" => ["required", "array"],
             "translations.header_logo_light_for_mode_alt_text" => ["required", "array"],
             "translations.header_logo_dark_for_mode_alt_text" => ["required", "array"],
