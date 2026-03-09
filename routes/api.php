@@ -30,6 +30,8 @@ Route::group(['prefix' => "admin", "as" => "admin."], function () {
                 include 'apis/content/about.php';
                 include 'apis/contact-message.php';
                 include 'apis/content/testimonial.php';
+                include 'apis/content/page.php';
+                include 'apis/content/all_seo_page.php';
         });
         
         
