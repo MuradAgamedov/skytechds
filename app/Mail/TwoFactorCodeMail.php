@@ -8,17 +8,17 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
-class ContactMessage extends Mailable
+class TwoFactorCodeMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $code;
     /**
      * Create a new message instance.
      */
-    public function __construct(public array $data)
+    public function __construct($code)
     {
+        $this->code = $code;
     }
 
     /**
@@ -27,7 +27,7 @@ class ContactMessage extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Message',
+            subject: 'Two Factor Code Mail',
         );
     }
 
@@ -37,10 +37,10 @@ class ContactMessage extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact',
+            view: 'emails.two-factor-code',
             with: [
-                'data' => $this->data
-            ]
+                'code' => $this->code,
+            ],
         );
     }
 
