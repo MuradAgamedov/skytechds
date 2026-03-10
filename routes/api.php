@@ -13,6 +13,7 @@ Route::group(['prefix' => "admin", "as" => "admin."], function () {
 
         Route::group(['middleware' => ["auth:sanctum", "throttle:50,1"]], function () {
                 include 'apis/auth/permission.php';
+                include 'apis/auth/role.php';
                 include 'apis/contacts/phone.php';
                 include 'apis/contacts/email.php';
                 include 'apis/contacts/map.php';
