@@ -7,7 +7,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait ReadTrait {
     public function index():JsonResponse {
-        $results = $this->service->getWidthPagination();
+        $with = $this->with ?? [];
+        $results = $this->service->getWidthPagination($with);
 
         return ApiResponse::success(
             $this->resource::collection($results),

@@ -22,7 +22,9 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => ["required", "max:255"]
+            "name" => ["required", "max:255", "unique:roles,name"],
+            "permissions" => ["array"],
+            "permissions.*" => ["string", "exists:permissions,name"]
         ];
     }
 }
