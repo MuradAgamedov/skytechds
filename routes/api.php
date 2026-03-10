@@ -11,7 +11,8 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix' => "admin", "as" => "admin."], function () {
     include 'apis/auth/auth.php';
 
-        Route::group(['middleware' => ["auth", "throttle:50,1"]], function () {
+        Route::group(['middleware' => ["auth:sanctum", "throttle:50,1"]], function () {
+                include 'apis/auth/permission.php';
                 include 'apis/contacts/phone.php';
                 include 'apis/contacts/email.php';
                 include 'apis/contacts/map.php';
