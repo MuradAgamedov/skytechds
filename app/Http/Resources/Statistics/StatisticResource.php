@@ -20,7 +20,7 @@ class StatisticResource extends JsonResource
                 $this->whenLoaded("translations")
             ),
             "icon" => $this->icon,
-            "status" => $this->id
+            "status" => $this->status
 
         ];
     }
