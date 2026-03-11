@@ -17,6 +17,4 @@ class AllSeoRepository implements AllSeoRepositoryInterface
     public function __construct(public AllSeo $model) {
         $this->folderName = "all_seos";
     }
-    
-      
 }

@@ -15,8 +15,9 @@ class AllSeoService implements AllSeoServiceInterface {
     {
     }
 
-    public function update($all_seo, array $data) {
-        return $this->repository->update($all_seo, $data);
+    public function update($id, array $data) {
+        $model = $this->repository->find($id);
+        return $this->repository->update($model, $data);
     }
 
     public function first()  {
