@@ -12,13 +12,13 @@ use App\Helpers\DB\WithTranslation\FindHelper;
 use App\Helpers\DB\WithTranslation\ReadHelper;
 use App\Helpers\DB\WithTranslation\UpdateHelper;
 use App\Support\ImageService;
-
-class StatisticRepository implements StatisticRepositoryInterface
+use App\Repositories\Base\WithTranslation\BaseCrudRepository;
+class StatisticRepository extends BaseCrudRepository implements StatisticRepositoryInterface
 {
-    use CreateHelper, ReadHelper, UpdateHelper, DeleteHelper, FindHelper;
-    public function __construct(public Statistic $model, public StatisticTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {
+    public function __construct(Statistic $model, public StatisticTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {
         $this->translationRelationField = "statistic_id";
         $this->folderName = "statistics";
+        $this->model = $model;
     }
 
 }

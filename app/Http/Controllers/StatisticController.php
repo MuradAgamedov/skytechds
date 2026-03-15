@@ -17,7 +17,8 @@ class StatisticController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = StatisticMessages::class;
+        $this->model = $statistic_service->getModel();
     }
 
-   
+
 }

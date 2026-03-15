@@ -17,5 +17,6 @@ class ServiceController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = ServiceMessages::class;
+        $this->model = $service_service->getModel();    
     }
 }

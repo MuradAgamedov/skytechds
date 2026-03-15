@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait First {
     public function first():JsonResponse {
+        $this->authorize('viewAny', $this->model);
         $results = $this->service->first();
 
         return ApiResponse::success(

@@ -20,4 +20,8 @@ class AboutRepository implements AboutRepositoryInterface
         $this->folderName = "abouts";
         $this->translationRelationField = "about_id";
     }
+    public function getModel(): About
+    {
+        return $this->model;
+    }
 }

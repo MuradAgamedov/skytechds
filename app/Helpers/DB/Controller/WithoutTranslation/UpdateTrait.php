@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait UpdateTrait {
     public function update($id):JsonResponse {
+        $this->authorize('update', $this->model);
         $request = app($this->update_request);
 
         $model = $this->service->find($id, $request->validated());

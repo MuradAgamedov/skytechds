@@ -8,6 +8,7 @@ use App\Helpers\DB\Services\UpdateTrait;
 use App\Interfaces\Services\AboutServiceInterface;
 
 use App\Repositories\AboutRepository;
+use App\Models\About\About;
 
 class AboutService implements AboutServiceInterface {
     use FirstTrait, UpdateTrait;
@@ -21,5 +22,9 @@ class AboutService implements AboutServiceInterface {
 
     public function first()  {
         return $this->repository->first();
+    }
+    public function getModel(): About
+    {
+        return $this->repository->getModel();
     }
 }

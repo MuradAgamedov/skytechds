@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repositories;
-
+use App\Repositories\Base\WithTranslation\BaseCrudRepository;
 use App\Helpers\DB\WithTranslation\CreateHelper;
 use App\Helpers\DB\WithTranslation\DeleteHelper;
 use App\Helpers\DB\WithTranslation\FindHelper;
@@ -13,12 +13,12 @@ use App\Models\Team\TeamTranslation;
 use App\Support\ImageService;
 use App\Services\LanguageService;
 
-class TeamRepository implements TeamRepositoryInterface
+class TeamRepository extends BaseCrudRepository implements TeamRepositoryInterface
 {
-    use CreateHelper, ReadHelper, UpdateHelper, DeleteHelper, FindHelper;
 
-    public function __construct(public Team $model, public TeamTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {
+    public function __construct(Team $model, public TeamTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {
         $this->translationRelationField = "team_id";
         $this->folderName = "team";
+        $this->model = $model;
     }
 }

@@ -17,6 +17,7 @@ class BlogController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = BlogMessages::class;
+        $this->model = $blog_service->getModel();
     }
 
     protected function getEagerLoadRelations(): array {

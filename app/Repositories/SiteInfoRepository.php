@@ -19,4 +19,8 @@ class SiteInfoRepository implements SiteInfoRepositoryInterface
         $this->translationRelationField = "site_info_id";
     }
 
+    public function getModel(): SiteInfo
+    {
+        return $this->model;
+    }
 }

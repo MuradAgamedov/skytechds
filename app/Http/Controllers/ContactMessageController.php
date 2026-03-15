@@ -27,7 +27,7 @@ class ContactMessageController extends Controller
     public function store():JsonResponse {
         $request = app($this->create_request);
         $result = $this->service->store($request->validated());
-        
+
         Mail::send("contact", ["data" => $result], function($message){
             $message->to("agamedov94@mail.ru")->subject("Contact message");
         });

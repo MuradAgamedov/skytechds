@@ -7,10 +7,10 @@ use App\Helpers\DB\Controller\WithoutTranslation\UpdateTrait;
 use App\Helpers\DB\Controller\WithoutTranslation\DeleteTrait;
 use App\Helpers\DB\Controller\WithoutTranslation\FindTrait;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BaseController extends Controller {
-    use ReadTrait, CreateTrait, UpdateTrait, DeleteTrait, FindTrait;
+    use AuthorizesRequests, ReadTrait, CreateTrait, UpdateTrait, DeleteTrait, FindTrait;
     public $service;
     public $resource;
     public $create_request;

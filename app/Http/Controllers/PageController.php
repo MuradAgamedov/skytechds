@@ -18,5 +18,6 @@ class PageController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = PageMessages::class;
+        $this->model = $page_service->getModel();
     }
 }

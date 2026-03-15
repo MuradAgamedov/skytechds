@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait DeleteTrait {
     public function destroy($id):JsonResponse {
+        $this->authorize('delete', $this->model);
         $email = $this->service->destroy($id);
 
         return ApiResponse::success(

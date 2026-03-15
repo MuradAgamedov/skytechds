@@ -2,21 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Helpers\DB\WithTranslation\CreateHelper;
-use App\Helpers\DB\WithTranslation\DeleteHelper;
-use App\Helpers\DB\WithTranslation\FindHelper;
-use App\Helpers\DB\WithTranslation\ReadHelper;
-use App\Helpers\DB\WithTranslation\UpdateHelper;
-use App\Interfaces\Repositories\AddressRepositoryInterface;
+use App\Interfaces\Repositories\TagRepositoryInterface;
 use App\Models\Tag\Tag;
 use App\Models\Tag\TagTranslation;
 use App\Services\LanguageService;
+use App\Repositories\Base\WithTranslation\BaseCrudRepository;
 
-class TagRepository implements AddressRepositoryInterface
+class TagRepository extends BaseCrudRepository implements TagRepositoryInterface
 {
-    use CreateHelper, ReadHelper, UpdateHelper, DeleteHelper, FindHelper;
-
-    public function __construct(public Tag $model, public TagTranslation $translationModel, public LanguageService $languageService) {
+    public function __construct(Tag $model, TagTranslation $translationModel, LanguageService $languageService) {
+        $this->model = $model;
         $this->translationRelationField = "tag_id";
     }
 }

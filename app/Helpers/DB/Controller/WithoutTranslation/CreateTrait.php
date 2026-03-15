@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait CreateTrait {
     public function store():JsonResponse {
+        $this->authorize('create', $this->model);
         $request = app($this->create_request);
         $result = $this->service->store($request->validated());
 

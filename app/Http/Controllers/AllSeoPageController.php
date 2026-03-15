@@ -18,6 +18,7 @@ class AllSeoPageController extends Controller
         $this->resource = AllSeoPageResource::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = AllSeoMessages::class;
+        $this->model = $all_seo_service->getModel();
     }
-    
+
 }

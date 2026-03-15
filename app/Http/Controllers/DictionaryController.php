@@ -18,6 +18,7 @@ class DictionaryController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = DictionaryMessages::class;
+        $this->model = $dictionary_service->getModel();
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repositories;
-
+use App\Repositories\Base\WithTranslation\BaseCrudRepository;
 use App\Helpers\DB\WithTranslation\CreateHelper;
 use App\Helpers\DB\WithTranslation\DeleteHelper;
 use App\Helpers\DB\WithTranslation\FindHelper;
@@ -12,11 +12,11 @@ use App\Models\Page\Page;
 use App\Models\Page\PageTranslation;
 use App\Services\LanguageService;
 
-class PageRepository implements PageRepositoryInterface
+class PageRepository extends BaseCrudRepository implements PageRepositoryInterface
 {
-    use CreateHelper, ReadHelper, UpdateHelper, DeleteHelper, FindHelper;
 
-    public function __construct(public Page $model, public PageTranslation $translationModel, public LanguageService $languageService) {
+    public function __construct(Page $model, public PageTranslation $translationModel, public LanguageService $languageService) {
         $this->translationRelationField = "page_id";
+        $this->model = $model;
     }
 }

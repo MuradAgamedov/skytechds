@@ -15,5 +15,9 @@ class SocialNetworkRepository implements SocialNetworkRepositoryInterface{
     public function __construct(public SocialNetwork $model)
     {
     }
-   
+
+    public function getModel() {
+        return $this->model;
+    }
+
 }

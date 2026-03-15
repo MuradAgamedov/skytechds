@@ -19,5 +19,6 @@ class RoleController extends BaseController
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = RoleMessages::class;
         $this->with = ['permissions'];
+        $this->model = $role_service->getModel();
     }
 }

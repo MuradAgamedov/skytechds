@@ -18,5 +18,6 @@ class FaqController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = FaqMessages::class;
+        $this->model = $faq_service->getModel();
     }
 }

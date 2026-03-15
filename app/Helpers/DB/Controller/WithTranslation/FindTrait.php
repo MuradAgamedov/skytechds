@@ -5,9 +5,10 @@ namespace App\Helpers\DB\Controller\WithTranslation;
 use App\Support\ApiResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-trait FindTrait 
+trait FindTrait
 {
     public function show($result) : JsonResponse {
+        $this->authorize('view', $this->model);
         $relations = [];
         if (method_exists($this, 'getEagerLoadRelations')) {
             $relations = $this->getEagerLoadRelations();

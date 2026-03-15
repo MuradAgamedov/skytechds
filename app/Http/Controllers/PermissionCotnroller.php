@@ -8,7 +8,6 @@ use App\Http\Requests\Permission\UpdateRequest;
 use App\Http\Resources\PermissionResource;
 use App\Services\PermissionService;
 use App\Support\Messages\PermissionMessages;
-
 class PermissionCotnroller extends BaseController
 {
     public function __construct(public PermissionService $permission_service)
@@ -18,5 +17,6 @@ class PermissionCotnroller extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = PermissionMessages::class;
-    }   
+        $this->model = $permission_service->getModel();
+    }
 }

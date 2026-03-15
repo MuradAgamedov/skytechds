@@ -11,4 +11,7 @@ use App\Helpers\DB\Services\UpdateTrait;
 class BaseService {
     use ReadTrait, CreateTrait, UpdateTrait, DeleteTrait, FindTrait;
     public $repository;
+    public function getModel() {
+        return $this->repository->getModel();
+    }
 }

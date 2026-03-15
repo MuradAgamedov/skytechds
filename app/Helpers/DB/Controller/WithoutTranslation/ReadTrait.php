@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 trait ReadTrait {
     public function index():JsonResponse {
+        $this->authorize('viewAny', $this->model);
         $with = $this->with ?? [];
         $results = $this->service->getWidthPagination($with);
 

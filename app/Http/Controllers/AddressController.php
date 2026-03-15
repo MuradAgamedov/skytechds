@@ -18,5 +18,6 @@ class AddressController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = AddressMessages::class;
+        $this->model = $address_service->getModel();
     }
 }

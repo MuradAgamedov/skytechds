@@ -2,23 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Helpers\DB\WithTranslation\CreateHelper;
-use App\Helpers\DB\WithTranslation\DeleteHelper;
-use App\Helpers\DB\WithTranslation\FindHelper;
-use App\Helpers\DB\WithTranslation\ReadHelper;
-use App\Helpers\DB\WithTranslation\UpdateHelper;
 use App\Interfaces\Repositories\PortfolioRepositoryInterface;
-
+use App\Repositories\Base\WithTranslation\BaseCrudRepository;
 use App\Models\Portfolio\Portfolio;
 use App\Models\Portfolio\PortfolioTranslation;
 use App\Services\LanguageService;
 use App\Support\ImageService;
 
-class PortfolioRepository implements PortfolioRepositoryInterface
+class PortfolioRepository extends BaseCrudRepository implements PortfolioRepositoryInterface
 {
-    use ReadHelper, CreateHelper, UpdateHelper, DeleteHelper, FindHelper;
-    public function __construct(public Portfolio  $model, public PortfolioTranslation $translationModel, public LanguageService $languageService, public ImageService $image_service) {
-        $this->folderName = "portfolios";
+    public function __construct(Portfolio $model, PortfolioTranslation $translationModel, LanguageService $languageService, ImageService $image_service) {
+        $this->model = $model;
         $this->translationRelationField = "portfolio_id";
     }
 

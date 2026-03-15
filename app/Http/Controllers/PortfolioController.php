@@ -17,5 +17,6 @@ class PortfolioController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = PortfolioMessages::class;
+        $this->model = $portfolio_service->getModel();
     }
 }

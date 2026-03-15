@@ -12,12 +12,15 @@ use App\Helpers\DB\WithTranslation\DeleteHelper;
 use App\Helpers\DB\WithTranslation\FindHelper;
 use App\Helpers\DB\WithTranslation\ReadHelper;
 use App\Helpers\DB\WithTranslation\UpdateHelper;
+use App\Repositories\Base\WithTranslation\BaseCrudRepository;
 
-class DictionaryRepository implements DictionaryRepositoryInterface{
-    use ReadHelper, UpdateHelper, DeleteHelper, FindHelper, CreateHelper;
-    public function __construct(public Dictionary $model, public DictionaryTranslation $translationModel, public LanguageService $languageService)
+class DictionaryRepository extends BaseCrudRepository implements DictionaryRepositoryInterface{
+    public function __construct(Dictionary $model, DictionaryTranslation $translationModel, LanguageService $languageService)
     {
+        $this->model = $model;
         $this->translationRelationField = "dictionary_id";
     }
-   
+
+
+
 }

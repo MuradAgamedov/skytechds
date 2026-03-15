@@ -9,8 +9,11 @@ use App\Helpers\DB\WithoutTranslation\FindHelper;
 use App\Helpers\DB\WithoutTranslation\ReadHelper;
 use App\Helpers\DB\WithoutTranslation\UpdateHelper;
 
-class BaseCrudRepository 
+class BaseCrudRepository
 {
     use CreateHelper, UpdateHelper, DeleteHelper, ReadHelper, FindHelper;
     protected Model $model;
+    public function getModel() {
+        return $this->model;
+    }
 }

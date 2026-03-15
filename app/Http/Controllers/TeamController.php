@@ -17,5 +17,6 @@ class TeamController extends BaseController
         $this->create_request = CreateRequest::class;
         $this->update_request = UpdateRequest::class;
         $this->messagesModel = TeamMessages::class;
+        $this->model = $team_service->getModel();
     }
 }
