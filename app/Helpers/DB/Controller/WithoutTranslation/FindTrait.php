@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 trait FindTrait {
     public function show($id) {
         $this->authorize('view', $this->model);
-         $email = $this->service->find($id);
+        $with = $this->with ?? [];
+        $email = $this->service->find($id, $with);
 
         return ApiResponse::success(
             $email ? new $this->resource($email) : null,
