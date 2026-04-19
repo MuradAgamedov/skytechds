@@ -4,7 +4,7 @@ namespace App\Helpers\DB\WithTranslation;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 
-trait ReadHelper 
+trait ReadHelper
 {
     public function getWidthPagination(array $with = [], int $limit = 60): LengthAwarePaginator
     {

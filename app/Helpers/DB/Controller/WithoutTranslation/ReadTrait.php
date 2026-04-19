@@ -9,7 +9,8 @@ trait ReadTrait {
     public function index():JsonResponse {
         $this->authorize('viewAny', $this->model);
         $with = $this->with ?? [];
-        $results = $this->service->getWidthPagination($with);
+        $limit = isset($this->limit) ? $this->limit : 600;
+        $results = $this->service->getWidthPagination($with, $limit);
 
         return ApiResponse::success(
             $this->resource::collection($results),

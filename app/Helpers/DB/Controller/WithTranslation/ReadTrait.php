@@ -13,7 +13,8 @@ trait ReadTrait
         if (method_exists($this, 'getEagerLoadRelations')) {
             $relations = array_merge($relations, $this->getEagerLoadRelations());
         }
-        $results = $this->service->getWidthPagination($relations);
+        $limit = isset($this->limit) ? $this->limit : 60;
+        $results = $this->service->getWidthPagination($relations, $limit);
 
         return ApiResponse::success(
             $this->resource::collection($results),

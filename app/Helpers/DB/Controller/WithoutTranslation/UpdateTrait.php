@@ -10,7 +10,8 @@ trait UpdateTrait {
         $this->authorize('update', $this->model);
         $request = app($this->update_request);
 
-        $model = $this->service->find($id, $request->validated());
+        $with = $this->with ?? [];
+        $model = $this->service->find($id, $with);
         $model = $this->service->update($model, $request->validated());
         return ApiResponse::success(
             new $this->resource($model),
